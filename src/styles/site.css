@@ -15,9 +15,10 @@
   backdrop-filter: saturate(1.1) blur(10px);
   border-bottom: 1px solid var(--line);
 }
-.nav__brand { display: flex; align-items: center; gap: 10px; margin-right: auto; cursor: pointer; }
-.nav__brand img { height: 34px; width: auto; display: block; }
-.nav__brand .wm { font-family: var(--font-display); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; color: var(--pine-900); line-height: 1; }
+.nav__brand { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; margin-right: auto; cursor: pointer; text-decoration: none; }
+.nav__logo-clip { overflow: hidden; height: 44px; line-height: 0; }
+.nav__logo-clip img { height: 58px; width: auto; display: block; }
+.nav__tagline { font-size: 7px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-400); line-height: 1; white-space: nowrap; }
 .nav__links { display: flex; align-items: center; gap: 26px; }
 .nav__link {
   font-family: var(--font-text); font-size: 13.5px; font-weight: 500;
@@ -141,7 +142,8 @@
 /* ---------- FOOTER ---------- */
 .footer { background: var(--pine-900); color: var(--fg-on-dark); padding: 72px 0 40px; }
 .footer__top { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 48px; padding-bottom: 40px; border-bottom: 1px solid var(--line-on-dark); }
-.footer__brand img { height: 64px; margin-bottom: 16px; }
+.footer__logo-clip { overflow: hidden; height: 50px; line-height: 0; margin-bottom: 16px; }
+.footer__logo-clip img { height: 64px; width: auto; display: block; }
 .footer__tag { color: var(--fg-on-dark-muted); font-size: 14px; max-width: 240px; }
 .footer__cols { display: contents; }
 @media (max-width: 860px) {
@@ -216,7 +218,6 @@
 .sched-row { display: flex; align-items: baseline; gap: 22px; padding: 15px 4px; border-bottom: 1px solid var(--line); }
 .sched-row__time { width: 104px; flex: none; font-family: var(--font-mono); font-size: 13px; color: var(--sky-700); font-weight: 500; }
 .sched-row__act { font-family: var(--font-display); font-weight: 600; font-size: 19px; color: var(--pine-900); }
-.sched-row.is-feature { background: linear-gradient(90deg, rgba(233,153,107,0.10), transparent); }
 
 /* ---------- YEAR TOGGLE (archive) ---------- */
 .yeartoggle { display: flex; gap: 10px; margin-top: 26px; }
