@@ -2,6 +2,14 @@
 import PageLayout from '../layouts/PageLayout.astro';
 
 const ARCHIVE = {
+  2017: {
+    date: "June 2017",
+    time: "MacRae Meadows",
+    blurb: "Ann Graham Lotz — daughter of Billy Graham and acclaimed Bible teacher — brought a message of faith and Scripture to the mountain.",
+    acts: [
+      { name: "Ann Graham Lotz", role: "Speaker", feature: true, img: "/assets/performers/ann-graham-lotz.jpg" },
+    ],
+  },
   2025: {
     date: "June 22, 2025",
     time: "11am – 4pm · MacRae Meadows",
@@ -46,12 +54,13 @@ const ARCHIVE = {
         <div class="yeartoggle">
           <button class="yeartoggle__btn is-on" data-year="2025">2025</button>
           <button class="yeartoggle__btn" data-year="2024">2024</button>
+          <button class="yeartoggle__btn" data-year="2017">2017</button>
         </div>
       </div>
     </div>
 
-    {[2025, 2024].map(year => {
-      const data = ARCHIVE[year as 2025 | 2024];
+    {[2025, 2024, 2017].map(year => {
+      const data = ARCHIVE[year as 2025 | 2024 | 2017];
       const features = data.acts.filter(a => a.feature);
       const rest = data.acts.filter(a => !a.feature);
       return (
@@ -90,6 +99,7 @@ const ARCHIVE = {
               )}
             </div>
           </section>
+          {rest.length > 0 && (
           <section class="section section--sunk">
             <div class="container">
               <div class="section__head">
@@ -109,6 +119,7 @@ const ARCHIVE = {
               </div>
             </div>
           </section>
+          )}
         </div>
       );
     })}
