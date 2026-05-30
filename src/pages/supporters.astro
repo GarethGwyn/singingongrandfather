@@ -6,7 +6,8 @@ const cancelled  = Astro.url.searchParams.get('cancelled') === 'true';
 const donatedAmt = Astro.url.searchParams.get('amt');
 const donatedFreq = Astro.url.searchParams.get('freq');
 
-const CONTRIB_LOGOS = [
+const CONTRIB_LOGOS: { name: string; img?: string }[] = [
+  { name: "Pipper Productions" },
   { name: "The Avery Journal Times",               img: "/assets/contributors/avery-journal.png" },
   { name: "Town of Boone Cultural Resources",      img: "/assets/contributors/town-of-boone.png" },
   { name: "Piedmont Direct Mail",                  img: "/assets/contributors/piedmont-mail.png" },
@@ -18,8 +19,9 @@ const CONTRIB_LOGOS = [
   { name: "Explore Boone",                         img: "/assets/contributors/explore-boone.jpg" },
   { name: "Courtyard by Marriott",                 img: "/assets/contributors/courtyard-marriott.png" },
   { name: "Poster Design by Shake",                img: "/assets/contributors/shake.png" },
+  { name: "The Light FM",                          img: "/assets/contributors/the-light-fm.webp" },
 ];
-const PATRONS = ["S. B. Rudnick", "The Betty P. Kenan Foundation", "The Kenan Family Foundation", "Trey Doak", "Gail & Chris Barley"];
+const PATRONS = ["S. B. Rudnick", "The Betty P. Kenan Foundation", "The Kenan Family Foundation", "Trey Doak", "Gail & Chris Barley", "Harris Prevost"];
 const GIVE_EMAIL = "mailto:owengwyn@me.com?subject=Singing%20on%20Grandfather%20-%20Inquiry";
 ---
 <PageLayout title="Support the Ministry">
@@ -116,9 +118,12 @@ const GIVE_EMAIL = "mailto:owengwyn@me.com?subject=Singing%20on%20Grandfather%20
         </div>
         <div class="contrib-logos">
           {CONTRIB_LOGOS.map(c => (
-            <div class="contrib-logo">
-              <img src={c.img} alt={c.name} loading="lazy" />
-              <span>{c.name}</span>
+            <div class={`contrib-logo${!c.img ? ' contrib-logo--text' : ''}`}>
+              {c.img
+                ? <img src={c.img} alt={c.name} loading="lazy" />
+                : <span class="contrib-logo__name-only">{c.name}</span>
+              }
+              {c.img && <span>{c.name}</span>}
             </div>
           ))}
         </div>
