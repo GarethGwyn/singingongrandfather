@@ -198,6 +198,8 @@
 .roster-row__avatar { width: 42px; height: 42px; border-radius: 50%; flex: none; background-size: cover; background-position: center top; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--cream-100); }
 .roster-row__avatar[data-archival] { filter: sepia(0.35) contrast(1.03); }
 .roster-row__avatar.is-empty { background: var(--cream-200); color: var(--ink-400); font-weight: 400; }
+.roster-row__avatar.is-logo { background: var(--cream-100); border: 1px solid var(--line); }
+.roster-row__avatar.is-logo img { width: 28px; height: 28px; object-fit: contain; opacity: 0.6; }
 .roster-row__year { width: 58px; flex: none; font-family: var(--font-mono); font-size: 13px; color: var(--ink-500); }
 .roster-row__name { font-size: 16px; color: var(--ink-900); line-height: 1.4; }
 .roster-row.is-notable .roster-row__name { font-weight: 600; }

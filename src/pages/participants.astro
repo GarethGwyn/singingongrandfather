@@ -186,7 +186,7 @@ const PARTICIPANTS: Participant[] = [
   [2014, "Leighton Ford"],
   [2015, "Aron Wilborn"],
   [2016, "Andrew Greer"],
-  [2017, "Ann Graham Lotz"],
+  [2017, "Ann Graham Lotz", { notable: true, img: "/assets/performers/ann-graham-lotz.jpg" }],
   [2018, "Tom Burleson"],
   [2019, "The Cockman Family"],
   [2020, "<muted>Paused — COVID-19</muted>"],
@@ -252,7 +252,7 @@ for (const [y, n, meta] of PARTICIPANTS) {
                       ? <div class="roster-row__avatar" data-archival="true" style={`background-image:url(${imgUrl})`}></div>
                       : isMuted
                         ? <div class="roster-row__avatar is-empty">–</div>
-                        : <div class="roster-row__avatar" style={`background:${tintFor(name)}`}>{initials(name)}</div>
+                        : <div class="roster-row__avatar is-logo"><img src="/assets/brand/logo-fullcolor.png" alt="" /></div>
                     }
                     <div class="roster-row__year tnum">{year}</div>
                     <div class="roster-row__name">
@@ -265,7 +265,6 @@ for (const [y, n, meta] of PARTICIPANTS) {
             </div>
           ))}
         </div>
-        <p class="caption" style="margin-top:40px">Gaps reflect years without a recorded speaker. Compiled from the festival's own history.</p>
       </div>
     </section>
   </main>
