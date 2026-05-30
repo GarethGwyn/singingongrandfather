@@ -41,6 +41,7 @@ async function addContact(email: string, token: string): Promise<Response> {
     },
     body: JSON.stringify({
       email_address: { address: email, permission_to_send: 'implicit' },
+      create_source: 'Account',
       list_memberships: [listId],
     }),
   });
