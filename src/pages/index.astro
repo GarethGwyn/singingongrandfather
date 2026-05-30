@@ -154,6 +154,7 @@ const trucks = [
       <video autoplay muted loop playsinline>
         <source src="/assets/video/second-banner.mp4" type="video/mp4" />
       </video>
+      <div class="video-band__mobile-fallback"></div>
     </div>
 
     <!-- Email capture band -->
@@ -247,6 +248,10 @@ const trucks = [
     padding: 120px 0;
     text-align: center;
   }
+  /* iOS Safari doesn't support background-attachment: fixed */
+  @media (max-width: 880px) {
+    .psalm-band { background-attachment: scroll; padding: 80px 0; }
+  }
   .psalm-band__scrim {
     position: absolute;
     inset: 0;
@@ -272,6 +277,19 @@ const trucks = [
     width: 100%;
     height: auto;
     display: block;
+  }
+  .video-band__mobile-fallback { display: none; }
+  @media (max-width: 880px) {
+    .video-band video { display: none; }
+    .video-band__mobile-fallback {
+      display: block;
+      width: 100%;
+      min-height: 220px;
+      aspect-ratio: 16 / 9;
+      background-image: url(/assets/photography/crowd-mountain-chairs.jpg);
+      background-size: cover;
+      background-position: center 40%;
+    }
   }
 
   .food-band {
