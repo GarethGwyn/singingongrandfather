@@ -1,0 +1,255 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const ED_GRAHAM = "/assets/performers/ed-graham.jpg";
+const ALDRIDGE  = "/assets/performers/aldridge.png";
+const BOONE     = "/assets/performers/boone-church.jpg";
+const PATRICIA  = "/assets/performers/patricia-smith.jpg";
+const CALDWELL  = "/assets/performers/caldwell-mens-chorus.jpg";
+const MCKEE     = "/assets/performers/rev-mckee.jpg";
+
+const schedule = [
+  { time: "10:00 AM", act: "Gates Open", kind: "light" },
+  { time: "11:00 AM", act: "Opening Prayer · Rev. Dr. Michael T. McKee" },
+  { time: "11:05 AM", act: "Patricia Smith" },
+  { time: "11:45 AM", act: "Sing-Along on the Mountain", kind: "light" },
+  { time: "12:00 PM", act: "Boone & Church" },
+  { time: "1:10 PM",  act: "Caldwell Men's Chorus · Sing-Along" },
+  { time: "2:00 PM",  act: "Edward Graham of Samaritan's Purse", kind: "feature" },
+  { time: "2:45 PM",  act: "Darin & Brooke Aldridge", kind: "feature" },
+  { time: "4:00 PM",  act: "Closing Benediction", kind: "light" },
+];
+
+const trucks = [
+  { name: "Carolina Barbeque",                  icon: "🍖" },
+  { name: "The Tasty Traveler",                 icon: "🚚" },
+  { name: "Appalachian High Country Concessions", icon: "🏔️" },
+  { name: "Mookie's Kettle Korn",               icon: "🍿" },
+  { name: "Buttercups Ice Cream and Beverages", icon: "🍦" },
+  { name: "Sips Soda Shop",                     icon: "🥤" },
+  { name: "Cubs Snak Shak",                     icon: "🥨" },
+];
+---
+<PageLayout title="The 2026 Line Up">
+  <main>
+    <div class="pageheader section--cream">
+      <div class="container">
+        <div class="eyebrow">Sunday, June 28 · 2026 · Christ-Centered &amp; Family-Oriented</div>
+        <hr class="tickrule" />
+        <h1 class="pageheader__title">The 2026 Line Up</h1>
+      </div>
+    </div>
+
+    <!-- Featured performers -->
+    <section class="section section--cream section--tight">
+      <div class="container">
+        <div class="grid-performers">
+          <div class="perf">
+            <div class="perf__img" style={`background-image:url(${ALDRIDGE})`}></div>
+            <div class="perf__body">
+              <div class="perf__role">Headliner</div>
+              <h3 class="perf__name">Darin &amp; Brooke Aldridge</h3>
+              <p class="perf__desc">Brooke is a four-time IBMA Female Vocalist of the Year; Darin, a former Country Gentleman and IBMA Mentor of the Year. Named Bluegrass Artists of the Year at the 2023 Absolutely Gospel Music Awards.</p>
+            </div>
+          </div>
+          <div class="perf">
+            <div class="perf__img" style={`background-image:url(${ED_GRAHAM})`}></div>
+            <div class="perf__body">
+              <div class="perf__role">Keynote Speaker</div>
+              <h3 class="perf__name">Edward Graham</h3>
+              <p class="perf__desc">Chief Operating Officer of Samaritan's Purse, with a heart for service and a powerful message of faith in action — encouragement rooted in real-world ministry.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule -->
+    <section class="section section--sky">
+      <div class="container">
+        <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+          <div class="eyebrow">The Running Order</div>
+          <h2 style="margin-top:12px">Schedule for June 28</h2>
+        </div>
+        <div class="sched">
+          {schedule.map(({ time, act, kind }) => (
+            <div class={`sched-row${kind === 'feature' ? ' is-feature' : ''}${kind === 'light' ? ' is-light' : ''}`}>
+              <div class="sched-row__time">{time}</div>
+              <div class="sched-row__act">{act}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Also on the mountain -->
+    <section class="section section--sunk">
+      <div class="container">
+        <div class="section__head">
+          <div class="eyebrow">Also on the Mountain</div>
+          <h2>The full day of song</h2>
+        </div>
+        <div class="grid-4">
+          <div class="perf perf--sm">
+            <div class="perf__img" style={`background-image:url(${MCKEE})`}></div>
+            <div class="perf__body">
+              <div class="perf__role">Opening Prayer</div>
+              <h3 class="perf__name">Rev. Michael McKee</h3>
+              <p class="perf__desc">Minister of Word &amp; Sacrament, Newland Presbyterian.</p>
+            </div>
+          </div>
+          <div class="perf perf--sm">
+            <div class="perf__img" style={`background-image:url(${PATRICIA})`}></div>
+            <div class="perf__body">
+              <div class="perf__role">Gospel</div>
+              <h3 class="perf__name">Patricia Smith</h3>
+              <p class="perf__desc">Southern &amp; soulful gospel, 30+ performances a year.</p>
+            </div>
+          </div>
+          <div class="perf perf--sm">
+            <div class="perf__img" style={`background-image:url(${BOONE})`}></div>
+            <div class="perf__body">
+              <div class="perf__role">Bluegrass</div>
+              <h3 class="perf__name">Boone &amp; Church</h3>
+              <p class="perf__desc">Award-winning young bluegrass band from Western NC.</p>
+            </div>
+          </div>
+          <div class="perf perf--sm">
+            <div class="perf__img" style={`background-image:url(${CALDWELL})`}></div>
+            <div class="perf__body">
+              <div class="perf__role">Chorus</div>
+              <h3 class="perf__name">Caldwell Men's Chorus</h3>
+              <p class="perf__desc">A 30-voice choir in multi-part Appalachian harmony.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section class="section section--pine section--center">
+      <div class="container" style="text-align:center">
+        <div class="eyebrow">Free Admission</div>
+        <h2 style="margin-top:14px">Save your spot in the meadow.</h2>
+        <p style="color:var(--fg-on-dark-muted);font-size:17px;max-width:520px;margin:0 auto 30px">Tickets are free — reserving just helps us plan the day. Bring the whole family.</p>
+        <!-- TODO: point to Eventbrite or chosen ticketing -->
+        <a class="btn btn--accent btn--lg" href="https://www.eventbrite.com/e/singing-on-grandfather-2026-tickets-1983169223533" target="_blank" rel="noopener noreferrer">Reserve Your Free Ticket</a>
+      </div>
+    </section>
+
+    <!-- Prayer Tent -->
+    <section class="section section--sky">
+      <div class="container">
+        <div class="prayer-tent-grid">
+          <div class="prayer-tent__img">
+            <img src="/assets/photography/prayer-tent.jpg" alt="Tent of the Testimony — Prayer Tent" />
+          </div>
+          <div class="prayer-tent__text">
+            <div class="eyebrow" style="margin-bottom:10px">Also on the Grounds</div>
+            <h2 style="margin-top:0;margin-bottom:16px">Prayer Tent</h2>
+            <p style="font-size:18px;font-weight:600;color:var(--pine-900);margin-bottom:10px">Do you need prayer? We are here for you.</p>
+            <p style="color:var(--ink-600);line-height:1.7;margin-bottom:20px">Stop by the <strong>Tent of the Testimony</strong> — a quiet place set apart in the meadow where volunteers are ready to pray with you for any need. Physical, emotional, financial, or relational — come and see us.</p>
+            <blockquote class="prayer-quote">
+              "He forgives all our sins, heals all our diseases, redeems our lives from destruction, and crowns us with loving kindness."
+              <cite>— Psalm 103</cite>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Food trucks -->
+    <section class="section section--cream">
+      <div class="container">
+        <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
+          <div class="eyebrow">On the Grounds</div>
+          <h2 style="margin-top:12px">2026 Food Trucks</h2>
+          <p style="color:var(--ink-500);font-size:16px;margin-top:8px">Grab a bite between sets — something for everyone on the meadow.</p>
+        </div>
+        <div class="trucks-grid">
+          {trucks.map(t => (
+            <div class="truck-card">
+              <div class="truck-card__icon">{t.icon}</div>
+              <div class="truck-card__name">{t.name}</div>
+            </div>
+          ))}
+        </div>
+        <div style="margin-top:48px;text-align:center">
+          <a class="btn btn--secondary" href="/archive">Browse past line ups: 2025 &amp; 2024 →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</PageLayout>
+
+<style>
+  .prayer-tent-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 860px) {
+    .prayer-tent-grid { grid-template-columns: 1fr; }
+    .prayer-tent__img { max-width: 320px; }
+  }
+  .prayer-tent__img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  .prayer-quote {
+    border-left: 3px solid var(--sky-600);
+    margin: 0;
+    padding: 12px 20px;
+    background: rgba(255,255,255,0.5);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-style: italic;
+    color: var(--ink-700);
+    line-height: 1.6;
+  }
+  .prayer-quote cite {
+    display: block;
+    font-style: normal;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sky-700);
+    margin-top: 8px;
+  }
+
+  .trucks-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+  @media (max-width: 800px) {
+    .trucks-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 480px) {
+    .trucks-grid { grid-template-columns: 1fr; }
+  }
+  .truck-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 24px 20px;
+    text-align: center;
+    background: var(--cream-50);
+  }
+  .truck-card__icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .truck-card__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--pine-800);
+    line-height: 1.3;
+  }
+</style>

@@ -1,0 +1,250 @@
+/* ============================================================
+   SINGING ON GRANDFATHER — Core Design Tokens
+   Colors + Typography + Spacing + Elevation
+   ============================================================
+   CONCEPT: "Halfway to Heaven" — the meeting of EARTH and SKY.
+     • SKY / heaven  → the logo blue. Voices rising, above the clouds.
+     • EARTH / roots → pine green + gold. The mountain, a century of heritage.
+     • HORIZON       → warm cream paper, where earth meets sky.
+     • SEASONAL ACCENT → the year's campaign color (the light at the horizon).
+                          Swap one token each year. 2026 = coral.
+   Type stays MODERN (Schibsted / Hanken); legacy is carried by archival photos.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Schibsted+Grotesk:wght@400;500;700;800;900&display=swap');
+
+:root {
+  /* ========== EARTH — rooted, grounded: the mountain & heritage ========== */
+  /* Pine green */
+  --pine-900: #1C2A20;   /* deepest — near-black green */
+  --pine-700: #283A2E;   /* primary pine (dark grounds, footer) */
+  --pine-500: #3D5242;   /* soft pine */
+  --pine-300: #6E8473;   /* muted sage */
+  /* Gold / brass */
+  --brass-600: #836634;
+  --brass-500: #9A7B3F;  /* primary gold accent (evergreen) */
+  --brass-400: #B8945A;
+  --brass-300: #C4A263;  /* light gold — on dark grounds */
+
+  /* ========== SKY — heaven, aspiration: "halfway to heaven" ========== */
+  --sky-900: #173A5E;    /* deep night-sky — text on pale sky panels */
+  --sky-700: #2E6FB0;    /* deep sky — links / text on cream (AA) */
+  --sky-500: #5B9BD5;    /* mid sky */
+  --sky-400: #7FB4E6;
+  --sky-300: #A9D0EF;    /* light sky */
+  --sky-100: #DCEAF6;    /* pale sky wash — panels / surfaces */
+  --sky-mark: #5BA3F8;   /* exact logo blue — for the mark itself */
+
+  /* ========== HORIZON — warm cream paper, where earth meets sky ========== */
+  --cream-50:  #FBF8F0;  /* lightest surface */
+  --cream-100: #F3EEE2;  /* BASE paper / page background */
+  --cream-200: #EBE3D2;  /* sunk surface / cards on cream */
+  --cream-300: #DED2BC;  /* warm hairline / divider */
+
+  /* ========== SEASONAL ACCENT — the year's campaign color ========== */
+  /* Swap these three each year to reskin. 2026 = coral (sunrise on the ridge). */
+  --coral-600: #C9663B;  /* deep coral — accent text on cream (AA) */
+  --coral-500: #E9996B;  /* campaign coral (from 2026 poster) */
+  --coral-300: #F2BFA1;  /* light coral — on dark grounds */
+
+  /* Ink — warm near-blacks & grays for text */
+  --ink-900: #1F241F;    /* primary text on cream */
+  --ink-700: #3A3F38;    /* strong secondary */
+  --ink-500: #6F6856;    /* muted / captions */
+  --ink-400: #8C8775;    /* faint / placeholders */
+
+  /* ---------- SEMANTIC COLOR ROLES ---------- */
+  --bg:            var(--cream-100);
+  --surface:       var(--cream-50);
+  --surface-sunk:  var(--cream-200);
+  --surface-sky:   var(--sky-100);   /* pale sky panel */
+  --bg-dark:       var(--pine-700);
+  --bg-dark-deep:  var(--pine-900);
+  --bg-sky-deep:   var(--sky-900);
+
+  --fg:            var(--ink-900);
+  --fg-muted:      var(--ink-500);
+  --fg-faint:      var(--ink-400);
+  --fg-on-dark:    var(--cream-100);
+  --fg-on-dark-muted: #B9C4B3;
+
+  --brand:         var(--pine-700);  /* earth — primary brand ground */
+  --brand-deep:    var(--pine-900);
+  --sky:           var(--sky-700);   /* heaven — aspiration / interactive */
+  --gold:          var(--brass-500); /* earth accent — evergreen labels/rules */
+  --gold-on-dark:  var(--brass-300);
+  --accent:        var(--coral-500); /* SEASONAL — swap yearly */
+  --accent-deep:   var(--coral-600);
+  --accent-on-dark:var(--coral-300);
+  --link:          var(--sky-700);
+
+  --line:          var(--cream-300);
+  --line-strong:   rgba(40,58,46,0.18);
+  --line-on-dark:  rgba(243,238,226,0.16);
+
+  /* Subtle status colors, palette-harmonized */
+  --success: #3E7D5A;
+  --warning: var(--brass-500);
+  --danger:  #A8432F;   /* warm rust */
+
+  /* ---------- TYPEFACES ---------- */
+  --font-display: 'Schibsted Grotesk', 'Hanken Grotesk', system-ui, sans-serif;
+  --font-text:    'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-accent:  'Newsreader', Georgia, 'Times New Roman', serif; /* scripture / quotes only */
+  --font-mono:    ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---------- TYPE SCALE (modular, rem on 16px) ---------- */
+  --text-xs:   0.75rem;   /* 12 */
+  --text-sm:   0.875rem;  /* 14 */
+  --text-base: 1rem;      /* 16 */
+  --text-lg:   1.125rem;  /* 18 */
+  --text-xl:   1.375rem;  /* 22 */
+  --text-2xl:  1.75rem;   /* 28 */
+  --text-3xl:  2.25rem;   /* 36 */
+  --text-4xl:  3rem;      /* 48 */
+  --text-5xl:  4rem;      /* 64 */
+  --text-6xl:  5.5rem;    /* 88 — hero display */
+
+  --leading-tight:   1.05;
+  --leading-snug:    1.2;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.08em;
+  --tracking-caps:   0.18em;   /* letterspaced eyebrows / labels */
+
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-display: 800;
+
+  /* ---------- SPACING (4px base) ---------- */
+  --space-1: 0.25rem;  /* 4  */
+  --space-2: 0.5rem;   /* 8  */
+  --space-3: 0.75rem;  /* 12 */
+  --space-4: 1rem;     /* 16 */
+  --space-5: 1.5rem;   /* 24 */
+  --space-6: 2rem;     /* 32 */
+  --space-7: 3rem;     /* 48 */
+  --space-8: 4rem;     /* 64 */
+  --space-9: 6rem;     /* 96 */
+  --space-10: 8rem;    /* 128 */
+
+  /* ---------- RADII (crisp/modern) ---------- */
+  --radius-sm:  3px;
+  --radius-md:  6px;
+  --radius-lg:  12px;
+  --radius-xl:  20px;
+  --radius-pill: 999px;
+
+  /* ---------- ELEVATION (warm, pine-tinted) ---------- */
+  --shadow-sm: 0 1px 2px rgba(28,42,32,0.07);
+  --shadow-md: 0 6px 18px -8px rgba(28,42,32,0.18);
+  --shadow-lg: 0 24px 60px -28px rgba(28,42,32,0.30);
+
+  /* ---------- MOTION ---------- */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 140ms;
+  --dur: 240ms;
+  --dur-slow: 420ms;
+
+  --measure: 66ch; /* ideal reading width */
+}
+
+/* ============================================================
+   BASE ELEMENTS
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-text);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  font-weight: var(--weight-regular);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headings — modern display sans, tight + confident */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--brand-deep);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0 0 0.5em;
+  text-wrap: balance;
+}
+h1 { font-size: var(--text-5xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); font-weight: var(--weight-bold); }
+h4 { font-size: var(--text-xl); font-weight: var(--weight-bold); letter-spacing: var(--tracking-normal); }
+
+p { margin: 0 0 1em; max-width: var(--measure); text-wrap: pretty; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+strong { font-weight: var(--weight-semibold); }
+small { font-size: var(--text-sm); }
+hr { border: 0; border-top: 1px solid var(--line); margin: var(--space-6) 0; }
+
+/* ============================================================
+   SEMANTIC TYPE UTILITIES
+   ============================================================ */
+.display {                      /* oversized hero display */
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  font-size: var(--text-6xl);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tight);
+  color: var(--brand-deep);
+}
+.eyebrow {                      /* letterspaced label — evergreen gold (earth) */
+  font-family: var(--font-text);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--gold);
+}
+.lead {                         /* intro paragraph */
+  font-size: var(--text-xl);
+  line-height: var(--leading-relaxed);
+  font-weight: var(--weight-regular);
+  color: var(--ink-700);
+}
+.quote {                        /* scripture / pull-quote — serif accent */
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: var(--weight-regular);
+  font-size: var(--text-2xl);
+  line-height: var(--leading-snug);
+  color: var(--brand);
+}
+.caption {
+  font-size: var(--text-sm);
+  color: var(--fg-muted);
+}
+.overline-rule {                /* eyebrow + hairline combo helper */
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.overline-rule::after {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+  opacity: 0.7;
+}
+
+/* Numeric / tabular (dates, ticket counts) */
+.tnum { font-variant-numeric: tabular-nums; }

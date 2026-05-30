@@ -1,0 +1,346 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const ALDRIDGE = "/assets/performers/aldridge.png";
+const ED_GRAHAM = "/assets/performers/ed-graham.jpg";
+
+const trucks = [
+  { name: "Carolina Barbeque",                    icon: "🍖" },
+  { name: "The Tasty Traveler",                   icon: "🚚" },
+  { name: "Appalachian High Country Concessions", icon: "🏔️" },
+  { name: "Mookie's Kettle Korn",                 icon: "🍿" },
+  { name: "Buttercups Ice Cream & Beverages",     icon: "🍦" },
+  { name: "Sips Soda Shop",                       icon: "🥤" },
+  { name: "Cubs Snak Shak",                       icon: "🥨" },
+];
+---
+<PageLayout title="Singing on Grandfather">
+  <main>
+    <!-- Hero -->
+    <header class="hero">
+      <video class="hero__video" autoplay muted loop playsinline poster="/assets/photography/worship-mountain.jpg">
+        <source src="/assets/video/festival-hero.mp4" type="video/mp4" />
+      </video>
+      <div class="hero__scrim"></div>
+      <div class="container">
+        <div class="hero__layout">
+          <div class="hero__inner">
+            <div class="hero__eyebrow eyebrow">Gospel Music &amp; Worship Festival · Since 1924</div>
+            <h1 class="hero__title">A day of song<br />on the mountain.</h1>
+            <div class="hero__meta">
+              <span>Sunday, June 28</span>
+              <span class="dot"></span>
+              <span>11am – 4pm</span>
+              <span class="pill-accent" style="margin-left:4px">Free Admission</span>
+            </div>
+            <div class="hero__cta-row">
+              <a class="btn btn--accent btn--lg" href="https://www.eventbrite.com/e/singing-on-grandfather-2026-tickets-1983169223533" target="_blank" rel="noopener noreferrer">Reserve Your Free Ticket</a>
+              <a class="btn btn--outline-light btn--lg" href="/lineup">See the Line Up</a>
+              <a class="hero__directions-link" href="#getting-there">Directions &amp; parking ↓</a>
+            </div>
+          </div>
+          <div class="hero__poster">
+            <img src="/assets/brand/poster-2026.jpg" alt="2026 Singing on Grandfather poster" />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Intro + stats -->
+    <section class="section section--cream">
+      <div class="container">
+        <div class="section__head">
+          <div class="eyebrow">The Gathering</div>
+          <hr class="tickrule" />
+          <p class="intro__lead">Bring your voice to the mountain. Since 1924, families have climbed into these Blue Ridge meadows to lift old-time gospel into the open air — the longest-running gathering of its kind in the southern Appalachians. This June, add yours to the chorus.</p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <div class="stat__num" style="color:var(--sky-700)">1924</div>
+            <div class="stat__label">A century of song on Grandfather Mountain</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">Free</div>
+            <div class="stat__label">Admission for every family, every year</div>
+          </div>
+          <div class="stat">
+            <div class="stat__num">All</div>
+            <div class="stat__label">Ages &amp; generations, one meadow</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured performers -->
+    <section class="section section--sunk">
+      <div class="container">
+        <div class="section__head">
+          <div class="eyebrow">The 2026 Line Up</div>
+          <h2>Voices on the meadow</h2>
+        </div>
+        <div class="grid-performers">
+          <div class="perf">
+            <div class="perf__img" style={`background-image:url(${ALDRIDGE})`}></div>
+            <div class="perf__body">
+              <div class="perf__role">Headliner</div>
+              <h3 class="perf__name">Darin &amp; Brooke Aldridge</h3>
+              <p class="perf__desc">Four-time IBMA Female Vocalist of the Year and award-winning bluegrass gospel, straight from the Carolina foothills.</p>
+            </div>
+          </div>
+          <div class="perf">
+            <div class="perf__img" style={`background-image:url(${ED_GRAHAM})`}></div>
+            <div class="perf__body">
+              <div class="perf__role">Keynote Speaker</div>
+              <h3 class="perf__name">Edward Graham</h3>
+              <p class="perf__desc">Chief Operating Officer of Samaritan's Purse, bringing a heartfelt message of faith in action.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:36px">
+          <a class="btn btn--secondary" href="/lineup">See the full line up</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Food on the grounds -->
+    <section class="food-band">
+      <div class="container" style="text-align:center">
+        <div class="eyebrow food-band__eyebrow">Food on the Grounds</div>
+        <h2 class="food-band__title">Something for everyone on the meadow.</h2>
+        <div class="food-chips">
+          {trucks.map(t => (
+            <span class="food-chip">
+              <span class="food-chip__icon">{t.icon}</span>
+              {t.name}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Scripture quote band -->
+    <section class="psalm-band">
+      <div class="psalm-band__scrim"></div>
+      <div class="container psalm-band__content">
+        <div class="quoteband">
+          <div class="quoteband__q" style="color:#fff">"Come, let us sing for joy to the Lord; let us shout aloud to the Rock of our salvation."</div>
+          <div class="quoteband__cite" style="color:rgba(255,255,255,0.65)">Psalm 95:1</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section section--sunk section--center">
+      <div class="container">
+        <div class="section__head" style="margin-left:auto;margin-right:auto;text-align:center">
+          <div class="eyebrow">Last Year on the Mountain</div>
+          <h2 style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.4)">Scenes from the meadow</h2>
+        </div>
+        <div class="gallery__grid">
+          <div class="gallery__tile gallery__tile--wide" style="background-image:url(/assets/photography/worship-team.jpg);background-position:center 30%"></div>
+          <div class="gallery__tile" style="background-image:url(/assets/photography/singer-blue.png)"></div>
+          <div class="gallery__tile" style="background-image:url(/assets/photography/young-fiddler.jpg)"></div>
+          <div class="gallery__tile" style="background-image:url(/assets/photography/crowd-joy.png)"></div>
+          <div class="gallery__tile" style="background-image:url(/assets/photography/singer-guitar.jpg)"></div>
+          <div class="gallery__tile gallery__tile--wide" style="background-image:url(/assets/photography/crowd-mountain-chairs.jpg);background-position:center 40%"></div>
+        </div>
+        <div class="gallery__cap" style="color:var(--cream-200)">Scenes from last year on Grandfather Mountain</div>
+      </div>
+    </section>
+
+    <!-- Video band -->
+    <div class="video-band">
+      <video autoplay muted loop playsinline>
+        <source src="/assets/video/second-banner.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <!-- Getting There -->
+    <section class="section section--pine" id="getting-there">
+      <div class="container">
+        <div class="eyebrow">Plan Your Visit</div>
+        <h2 style="margin-top:12px;margin-bottom:40px">Meet us in the meadow.</h2>
+        <div class="visit-grid">
+          <div>
+            <div class="visit-detail">
+              <div class="visit-detail__label">When</div>
+              <div class="visit-detail__value" style="color:var(--cream-100)">Sunday, June 28 · 11am – 4pm</div>
+              <div class="visit-detail__sub" style="color:var(--fg-on-dark-muted)">Free admission · rain or shine</div>
+            </div>
+            <div class="visit-detail">
+              <div class="visit-detail__label">Where</div>
+              <div class="visit-detail__value" style="color:var(--cream-100)">MacRae Meadows, Grandfather Mountain</div>
+              <div class="visit-detail__sub" style="color:var(--fg-on-dark-muted)">2050 Blowing Rock Hwy, Linville, NC 28646</div>
+            </div>
+            <div class="visit-detail">
+              <div class="visit-detail__label">Know Before You Go</div>
+              <div class="tags" style="margin-top:10px">
+                <span class="tag" style="color:var(--cream-200);border-color:var(--line-on-dark)">Bring a chair</span>
+                <span class="tag" style="color:var(--cream-200);border-color:var(--line-on-dark)">Pack a picnic</span>
+                <span class="tag" style="color:var(--cream-200);border-color:var(--line-on-dark)">No alcohol</span>
+                <span class="tag" style="color:var(--cream-200);border-color:var(--line-on-dark)">No pets</span>
+                <span class="tag" style="color:var(--cream-200);border-color:var(--line-on-dark)">No on-site camping</span>
+              </div>
+            </div>
+            <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap">
+              <a class="btn btn--on-dark" href="https://maps.google.com/?q=MacRae+Meadows,2050+Blowing+Rock+Hwy,Linville,NC+28646" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              <a class="btn btn--outline-light" href="/lineup">See the 2026 Line Up</a>
+            </div>
+          </div>
+          <div class="map-card" style="border-color:var(--line-on-dark)">
+            <iframe
+              src="https://maps.google.com/maps?q=MacRae+Meadows,+2050+Blowing+Rock+Hwy,+Linville,+NC+28646&output=embed&z=13"
+              title="MacRae Meadows, Grandfather Mountain"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              style="position:absolute;inset:0;width:100%;height:100%;border:0"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</PageLayout>
+
+<style>
+  .dot { width:5px;height:5px;border-radius:50%;background:var(--brass-300);display:inline-block }
+
+  .hero__directions-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    transition: color 0.15s, border-color 0.15s;
+    align-self: center;
+  }
+  .hero__directions-link:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.6);
+  }
+
+  .psalm-band {
+    position: relative;
+    background-image: url(/assets/photography/man-arms-raised.jpg);
+    background-size: cover;
+    background-position: center 30%;
+    background-attachment: fixed;
+    padding: 120px 0;
+    text-align: center;
+  }
+  .psalm-band__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10,28,18,0.62) 0%,
+      rgba(10,28,18,0.52) 50%,
+      rgba(10,28,18,0.68) 100%
+    );
+  }
+  .psalm-band__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .video-band {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    background: var(--pine-900);
+  }
+  .video-band video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .food-band {
+    background: var(--coral-500);
+    padding: 72px 0;
+  }
+  .food-band__eyebrow {
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 12px;
+    letter-spacing: 0.12em;
+  }
+  .food-band__title {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 3vw, 32px);
+    color: #fff;
+    margin: 0 0 36px;
+    font-weight: 700;
+  }
+  .food-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .food-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 18px 8px 14px;
+    border-radius: 999px;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .food-chip__icon {
+    font-size: 17px;
+    line-height: 1;
+  }
+
+  /* Hero: fixed cinematic height, video fills + crops */
+  .hero {
+    min-height: 0;
+    height: clamp(520px, 72vh, 820px);
+  }
+
+  /* Darker scrim so text reads clearly over the video */
+  .hero__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(15,25,18,0.55) 0%,
+      rgba(15,25,18,0.25) 35%,
+      rgba(15,25,18,0.45) 65%,
+      rgba(15,25,18,0.88) 100%
+    );
+  }
+
+  .hero__layout {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+    padding-bottom: 72px;
+  }
+  .hero__inner { padding-bottom: 0; flex: 1; min-width: 0; }
+  .hero__poster {
+    flex: none;
+    width: clamp(180px, 20vw, 280px);
+    align-self: flex-end;
+    filter: drop-shadow(0 12px 32px rgba(15,25,18,0.5));
+  }
+  .hero__poster img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+  }
+  @media (max-width: 720px) {
+    .hero__poster { display: none; }
+  }
+</style>

@@ -1,0 +1,272 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const PHOTO_BASE = "https://images.squarespace-cdn.com/content/v1/654e48573735270570464261/";
+const PHOTO: Record<number, string> = {
+  1924: "d509b81c-8c27-42c9-bd7f-27913a1ff403/IMG_8002.jpg",
+  1925: "b48f6eef-e585-45ce-85a8-9a2fba0243ad/Screenshot.jpg",
+  1926: "dac7ccfb-190e-4167-988f-a0cc5ec5977a/images+%282%29.jpg",
+  1927: "0276baa4-6444-4b2b-a35d-3ce4ee96b47f/image.jpg",
+  1928: "688424b1-40f2-410c-b716-83dffeba8c77/b525fb01-b942-405d-ae8b-7f58d0157223.jpeg",
+  1929: "919446f1-787c-40fd-8e02-2eaa7a70ea2f/James-Heaton-3-11867422-ezgif.com-webp-to-jpg-converter.jpg",
+  1930: "89102f8f-b974-4a6b-8261-5cb747f73e11/JONES%2BI.png",
+  1934: "8345c5a9-9965-4fad-8fa4-a36ba09601da/IMG_8002.jpg",
+  1935: "63921af1-dccb-4ca8-aaeb-f80524a1f4c8/300px-Gragg-607.jpg",
+  1936: "9d992844-8ea7-4c5f-86e9-5390569469e3/52208946_1457556751.jpg",
+  1939: "63921af1-dccb-4ca8-aaeb-f80524a1f4c8/300px-Gragg-607.jpg",
+  1940: "89102f8f-b974-4a6b-8261-5cb747f73e11/JONES%2BI.png",
+  1941: "63921af1-dccb-4ca8-aaeb-f80524a1f4c8/300px-Gragg-607.jpg",
+  1942: "659d92fb-5587-4058-b58d-36fac5999a35/images+%283%29.jpeg",
+  1945: "0ed33e5a-c73e-4d27-9522-48fc2cb20c90/Image-57752_20220328.jpeg",
+  1949: "0ed33e5a-c73e-4d27-9522-48fc2cb20c90/Image-57752_20220328.jpeg",
+  1950: "0eef44c4-a114-4c24-84d2-24e8d186fd38/Scott_William_Kerr_Museum_of_History.jpg",
+  1951: "af7dd2cf-3c0d-4406-b683-5d2b2b7f56dc/ig_greer.jpg",
+  1952: "9acf0f3f-bf1c-43ad-928a-5f2dc64e7af0/2018_Judge_Johnson_Jay_Hayes.jpg",
+  1954: "fdc3c109-9a8c-43cb-a5a4-25611010ef49/Thumbnail.png",
+  1955: "e84ec43b-d7b8-415c-9960-c87f83bc7d6f/ted-collection.jpg",
+  1956: "59b7ca49-ac7d-48c3-8d83-ca72513e61a2/lossy-page1-1200px-Bascom_Lamar_Lunsford_%28cropped%29.tif.jpg",
+  1957: "56f6a7e8-7f92-412e-8640-4596c3c36309/74555672_134021070655.jpg",
+  1958: "fdc3c109-9a8c-43cb-a5a4-25611010ef49/Thumbnail.png",
+  1959: "83223c98-7030-4b8c-8fa4-5e4467def1a6/MORGAN-NE-061810-RTW.jpeg",
+  1962: "2b019d67-7f2a-4687-b6ab-9248c2ec82bc/800px-Billy_Graham_bw_photo%2C_April_11%2C_1966.jpg",
+  1963: "391c9fbe-08fb-4583-981b-3cc7fdb7c434/image-asset+%2826%29.jpeg",
+  1964: "c7c2ca16-2dc4-409a-b07b-534711fe792b/Terry_Sanford_1961.jpg",
+  1965: "022199af-02d2-41f4-8aa3-71807344c0f5/b000966_200.jpg",
+  1966: "053bdd52-19a6-4c89-a50a-2c2925433714/kingsmen_reese.jpg",
+  1967: "c0eecf60-48a2-48c7-88ff-c6d074b4a608/An_undated_portrait_of_South_Carolina_Governor_Robert_E._McNair.jpg",
+  1968: "fe771900-db07-4975-85c1-fba831878f80/Oral_Roberts.jpg",
+  1969: "b3417a10-8b10-458a-9622-ea0b12fa32e3/frankmoorejpg-bef9fd908da7959b.jpg",
+  1970: "b66afa7f-887b-479a-8330-2366e66b3a10/BOBBY_RICHARDSON_07.jpeg",
+  1971: "c8f9dd89-1ed9-47d7-8eaa-094c580efdcf/Grady-Wilson.jpg",
+  1972: "8e1b65bc-6c69-4cc9-9450-28474eb4fc51/c66fb96e-2079-4246-b077-ad34b76aea39.jpeg",
+  1973: "aa8b3f28-af02-44bc-80d5-ba7606c3a5e6/1994%2BEvans%2C%2BNorm%2B2x3.jpg",
+  1975: "de217d94-956c-4f1e-8c5f-9fd7ae388014/images+%286%29.jpeg",
+  1976: "fe771900-db07-4975-85c1-fba831878f80/Oral_Roberts.jpg",
+  1977: "f47aa4eb-017f-4c83-ae7f-99509123a4ed/images+%287%29.jpeg",
+  1978: "e068ab99-630c-415f-a280-86cfa46ac5fe/Jim-Bakkerrrr.jpg",
+  1979: "e1297be3-4d96-4d2a-80fd-444f4770b930/20131024-162317.jpg",
+  1980: "3e4d258f-6508-4ba4-84d2-29ec55a23632/Tom+Haggai+Teaser.jpg",
+  1981: "bd5238ca-2233-4c17-92de-11d16eb5b6af/Rex_Humbard_evangelist.jpeg",
+  1982: "3d6ae2b5-0347-45f1-8cf3-e8ba318ab3e5/images+%288%29.jpeg",
+  1983: "576e9192-ea08-4a2e-b921-950ec9edbe5c/Robert-Harris.jpg",
+  1984: "271a2839-351b-4cf9-8b5d-19f44e6b6fd6/Image-72791_20231104.jpeg",
+  1985: "29184284-faa6-4f9b-940b-a06edf4a3c8b/2021_Franklin_Graham.jpg",
+  1986: "c95b5265-79ee-4297-91e1-fabcac02e227/Dr-J-Allen-Blair.jpg",
+  1987: "67af6b26-0187-43ea-9eca-f71e083e5204/af3a2c05-2b5c-4714-98b2-e959f3684431.jpeg",
+  1988: "9b901c91-ab73-4f83-8058-bad63540a064/Campbell_Will.jpg",
+  1989: "e4c24c3c-6daa-4539-903a-fb06b3b4f42b/LF_portrait-m.jpg",
+  1990: "cd20f128-a0c9-44cc-a2dd-6eb45e348068/Bailey-Smith-890x680.jpg",
+  1991: "4467ac11-aca2-436d-8f01-f37c9076e134/arthur-smith-stripe-suit.jpg",
+  1992: "48f6297b-7660-4026-94e7-ae6d8ddc4c9a/images+%2811%29.jpeg",
+  1993: "0d80aee7-99d5-4623-bd21-91cbd23e815e/2021_Franklin_Graham.jpg",
+  1994: "3d300c62-eb49-4397-9337-8dee078eced0/fuller-7-tcm138-92186.jpg",
+  1995: "e84f2f5b-ba61-4503-b6f6-543ea1d12e4c/images+%2812%29.jpeg",
+  1996: "9c4555bc-d118-42ba-bb1f-e33064961be6/images+%2813%29.jpeg",
+  1997: "f508d8d7-ec9a-4a88-ae2f-f17ea5b585a3/Jerry_Falwell_portrait.jpg",
+  1998: "9233653d-41ff-4aa7-9eb2-40f53fc44b90/1516265153749.jpeg",
+  1999: "0d80aee7-99d5-4623-bd21-91cbd23e815e/2021_Franklin_Graham.jpg",
+  2000: "33d94b3e-a8a3-445c-9f58-186500392b3b/David_Jeremiah.jpg",
+  2001: "3fc56d83-c0da-439c-b2e8-a23adf4753a2/images+%2814%29.jpeg",
+  2002: "ed03ac7e-b944-46cc-bc17-11cf8087e140/ClebeMcClary.jpg",
+  2003: "90c1125c-67ae-420d-89ad-c641e0247e5e/images+%2815%29.jpeg",
+  2004: "4b4aa0dc-302d-4c5e-990f-714fca89a4bd/May+2014.jpg",
+  2005: "229b8578-984b-4c92-833e-bd2e61d61192/HAMILTON-obit-superJumbo+%281%29.jpg",
+  2006: "7c488dda-832d-4517-b9af-c17f6982fa56/maxresdefault+%281%29.jpg",
+  2007: "24bc158a-2b8b-4a9b-b296-9066d2d9fdcf/CarrollRoberson_wikipedia_2017.jpg",
+  2008: "4b4aa0dc-302d-4c5e-990f-714fca89a4bd/May+2014.jpg",
+  2009: "dc92f59d-33a4-4af6-8d8a-108b0d94169a/Freida+Hobson.jpg",
+  2010: "66d6da26-90de-4e45-9033-00ba24bf69e7/maxresdefault+%282%29.jpg",
+  2011: "e2351112-ca31-41cc-a959-34040f958cb1/ISx7cusquzpo3c1000000000.jpg",
+  2012: "a2012429-d098-41ce-9e81-da821b4b8202/Jerry_Moore_in_December_2006.jpg",
+  2013: "754c5ecf-2354-4e6b-bf53-cd72830583da/Will_Graham_Redeemed_Pod_Image_2.jpg",
+  2014: "e4c24c3c-6daa-4539-903a-fb06b3b4f42b/LF_portrait-m.jpg",
+  2015: "2f222fb9-17c7-46da-a9c1-165ba9e55030/57b7a29f-327e-4417-a479-79ef0c8d0d0c.jpeg",
+  2016: "a6965439-dc21-4fe6-98ee-1b4b74c741fa/Andrew_Greer_In_Concert.jpg",
+  2018: "97cd7181-ce40-4708-9024-6119e3cbf1d5/TOMMY_BURLESON_01.jpeg",
+  2019: "876ae50d-312b-42b6-a772-97ff74530007/Cockmans_hi-res3-scaled.jpg",
+  2022: "1dc7247d-200b-4a15-bc09-324c22c2b7ba/665245b55e5f4.jpeg",
+  2024: "0f6986eb-b007-4d59-a7a6-968daeda1fa3/Gary_D._Chapman.jpg",
+};
+
+function photoUrl(year: number): string | null {
+  return PHOTO[year] ? `${PHOTO_BASE}${PHOTO[year]}?format=300w` : null;
+}
+
+type ParticipantMeta = { notable?: boolean; tag?: string; img?: string };
+type Participant = [number, string, ParticipantMeta?];
+
+const PARTICIPANTS: Participant[] = [
+  [1924, "Joseph Larkin Hartley — the first church picnic", { notable: true, tag: "Founded" }],
+  [1925, "Rev. Cooke · J.L. Hartley · Rev. Lloyd Sudderth · Rev. John McGuire"],
+  [1926, "Rev. D.W. Haga · Shelby E. Gragg"],
+  [1927, "Rev. Shelby E. Gragg"],
+  [1928, "Prof. William Monroe Francum"],
+  [1929, "Rev. J.M. Heaton"],
+  [1930, "Rev. Roy Jones"],
+  [1931, "Rev. Culp"],
+  [1932, "Rev. Leroy Wood"],
+  [1934, "Joseph Larkin Hartley"],
+  [1935, "Rev. Shelby E. Gragg"],
+  [1936, "Dr. B.B. Doughtery · Rev. Culp"],
+  [1938, "Rev. P.J. Shell"],
+  [1939, "Rev. Shelby E. Gragg"],
+  [1940, "Rev. Roy Jones"],
+  [1941, "Rev. Shelby E. Gragg"],
+  [1942, "Rev. Levi Greene"],
+  [1943, "Rev. Creed Daniels"],
+  [1944, "Rev. K.L. Haga"],
+  [1945, "Rev. Freeman"],
+  [1946, "Rev. G.D. Dorsett"],
+  [1947, "Rev. Mack Hodges"],
+  [1948, "Rev. Mack Hodges"],
+  [1949, "Rev. Freeman"],
+  [1950, "Gov. Kerr Scott"],
+  [1951, "Dr. I.G. Greer · Rev. Ed Miller"],
+  [1952, "Judge Jonathan Hayes"],
+  [1953, "Prof. Ben V. Watson"],
+  [1954, "Rev. Wallace Dale Freeman"],
+  [1955, "Ted Malone"],
+  [1956, "Bascom Lamar Lunsford"],
+  [1957, "Rev. Honnicutt"],
+  [1958, "Rev. Wallace Dale Freeman · Rev. Jones"],
+  [1959, "Rev. Jones"],
+  [1961, "Joe Emerson · John Parcis"],
+  [1962, "Dr. Billy Graham", { notable: true, tag: "Billy Graham" }],
+  [1963, "Ford Philpot"],
+  [1964, "Gov. Terry Sanford"],
+  [1965, "Rep. James T. Broyhill"],
+  [1966, "Rev. Dean Reese"],
+  [1967, "Gov. Robert McNair"],
+  [1968, "Oral Roberts", { notable: true }],
+  [1969, "Rev. Frank R. Moore · Leighton Ford"],
+  [1970, "Bobby Richardson — N.Y. Yankees"],
+  [1971, "Grady Wilson"],
+  [1972, "Dave Boyer"],
+  [1973, "Norm Evans — Miami Dolphins"],
+  [1974, "Bob Hope · Johnny Cash · Gen. Westmoreland · Gov. Holshouser", { notable: true, tag: "Hope & Cash", img: "/assets/photography/heritage/johnny-cash-1974.jpg" }],
+  [1975, "Roy Acuff", { notable: true }],
+  [1976, "Oral Roberts · Roy Clark", { notable: true }],
+  [1977, "Rev. Bob Harrington"],
+  [1978, "Rev. Jim Moss"],
+  [1979, "Ben Haden"],
+  [1980, "Dr. Tom Haggai"],
+  [1981, "Rex Humbard"],
+  [1982, "Rev. Robert Harris"],
+  [1983, "Rev. Robert Harris"],
+  [1984, "Richard Roberts"],
+  [1985, "Rev. William Franklin Graham III"],
+  [1986, "Dr. Allen Blair"],
+  [1987, "Albert Long"],
+  [1988, "Will Campbell"],
+  [1989, "Leighton Ford"],
+  [1990, "Bailey Smith"],
+  [1991, "Arthur Smith"],
+  [1992, "Greg Laurie"],
+  [1993, "Franklin Graham", { notable: true }],
+  [1994, "Millard Fuller — Habitat for Humanity"],
+  [1995, "Clyde King — N.Y. Yankees"],
+  [1996, "Jim Wilson"],
+  [1997, "Jerry Falwell", { notable: true }],
+  [1998, "Steve Brown"],
+  [1999, "Franklin Graham"],
+  [2000, "Dr. David Jeremiah"],
+  [2001, "Zig Ziglar", { notable: true }],
+  [2002, "Clebe McClary"],
+  [2003, "Mike Whitson"],
+  [2004, "Billy Kim"],
+  [2005, "George Hamilton IV"],
+  [2006, "Michael Combs"],
+  [2007, "Carroll Roberson"],
+  [2008, "Billy Kim"],
+  [2009, "Rev. Frieda Hartley Hobson"],
+  [2010, "Dr. Greg Mathis"],
+  [2011, "Tim Greene"],
+  [2012, "Coach Jerry Moore"],
+  [2013, "Will Graham"],
+  [2014, "Leighton Ford"],
+  [2015, "Aron Wilborn"],
+  [2016, "Andrew Greer"],
+  [2017, "Ann Graham Lotz"],
+  [2018, "Tom Burleson"],
+  [2019, "The Cockman Family"],
+  [2020, "<muted>Paused — COVID-19</muted>"],
+  [2021, "<muted>Paused — COVID-19</muted>"],
+  [2022, "Rev. David Hughes Hobson"],
+  [2023, "<muted>A year of restructuring</muted>"],
+  [2024, "Dr. Gary Chapman", { notable: true, tag: "Centennial" }],
+  [2025, "The Cockman Family · Rev. Johnson Bowie · Rev. Michael McKee", { notable: true, img: "/assets/performers/rev-mckee.jpg" }],
+  [2026, "Darin & Brooke Aldridge · Edward Graham · Rev. Dr. Michael T. McKee", { notable: true, tag: "Coming Up", img: "/assets/performers/ed-graham.jpg" }],
+];
+
+const STOPWORDS = ['dr','rev','gov','rep','prof','judge','gen','coach','mr','mrs','ms','sr','jr','the','of'];
+function initials(name: string): string {
+  const s = name.replace(/<\/?muted>/g, '').split(/[·—;,]/)[0].trim();
+  const words = s.split(/\s+/).filter(w => {
+    const c = w.replace(/[^a-zA-Z]/g, '').toLowerCase();
+    return c && !STOPWORDS.includes(c);
+  });
+  return ((words[0] || ' ')[0] + (words[1] || '')[0] || '').toUpperCase().slice(0, 2) || '•';
+}
+const TINTS = ['#283A2E', '#2E6FB0', '#9A7B3F', '#3D5242', '#173A5E'];
+function tintFor(name: string): string {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h * 31 + name.charCodeAt(i)) | 0;
+  return TINTS[Math.abs(h) % TINTS.length];
+}
+
+// Group by decade
+type DecadeGroup = { dec: number; rows: [number, string, ParticipantMeta][] };
+const decades: DecadeGroup[] = [];
+let cur: DecadeGroup | null = null;
+for (const [y, n, meta] of PARTICIPANTS) {
+  const dec = Math.floor(y / 10) * 10;
+  if (!cur || cur.dec !== dec) { cur = { dec, rows: [] }; decades.push(cur); }
+  cur.rows.push([y, n, meta || {}]);
+}
+---
+<PageLayout title="A Century of Participants">
+  <main>
+    <div class="pageheader section--cream">
+      <div class="container">
+        <a class="nav__link" style="margin-bottom:18px;color:var(--sky-700);display:inline-block" href="/about">← Back to About</a>
+        <div class="eyebrow">Since 1924</div>
+        <hr class="tickrule" />
+        <h1 class="pageheader__title">A century of<br />participants.</h1>
+        <p class="lead" style="margin-top:18px">Every speaker and singer who has stood on the mountain, year by year — from circuit-riding preachers to household names.</p>
+      </div>
+    </div>
+
+    <section class="section section--cream section--tight">
+      <div class="container">
+        <div class="roster">
+          {decades.map(({ dec, rows }) => (
+            <div class="roster__decade">
+              <div class="roster__decade-label">{dec}s</div>
+              {rows.map(([year, name, meta]) => {
+                const isMuted = /^<muted>/.test(name);
+                const cleanName = name.replace(/<\/?muted>/g, '');
+                const imgUrl = meta.img || photoUrl(year);
+                return (
+                  <div class={`roster-row${meta.notable ? ' is-notable' : ''}`}>
+                    {imgUrl
+                      ? <div class="roster-row__avatar" data-archival="true" style={`background-image:url(${imgUrl})`}></div>
+                      : isMuted
+                        ? <div class="roster-row__avatar is-empty">–</div>
+                        : <div class="roster-row__avatar" style={`background:${tintFor(name)}`}>{initials(name)}</div>
+                    }
+                    <div class="roster-row__year tnum">{year}</div>
+                    <div class="roster-row__name">
+                      {isMuted ? <span class="muted">{cleanName}</span> : cleanName}
+                    </div>
+                    {meta.tag && <div class="roster-row__tag">{meta.tag}</div>}
+                  </div>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+        <p class="caption" style="margin-top:40px">Gaps reflect years without a recorded speaker. Compiled from the festival's own history.</p>
+      </div>
+    </section>
+  </main>
+</PageLayout>

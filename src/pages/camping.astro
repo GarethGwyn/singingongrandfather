@@ -1,0 +1,154 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const CAMPGROUNDS = [
+  {
+    name: "Buck Hill RV & Campground",
+    url: "buckhillrvcampground.com",
+    href: "https://www.buckhillrvcampground.com/",
+    img: "/assets/camping/camp-2.jpg",
+  },
+  {
+    name: "Big Mike's RV Resort",
+    url: "bigmikesrvresort.com",
+    href: "https://www.bigmikesrvresort.com/",
+    img: "/assets/camping/camp-bigmikes.jpg",
+  },
+  {
+    name: "Linville Falls Campground",
+    url: "linvillefalls.com",
+    href: "https://www.linvillefalls.com/",
+    img: "/assets/camping/camp-linville.jpg",
+  },
+  {
+    name: "Grandfather Mountain State Park",
+    url: "ncparks.gov",
+    href: "https://www.ncparks.gov/state-parks/grandfather-mountain-state-park/camping",
+    img: "/assets/camping/camp-4.jpg",
+  },
+  {
+    name: "Down By The River Campground",
+    url: "downbytherivercampground.com",
+    href: "https://www.downbytherivercampground.com/",
+    img: "/assets/camping/camp-downbyriver.jpg",
+  },
+  {
+    name: "Grandfather Mountain Camping",
+    url: "grandfatherrv.com",
+    href: "https://www.grandfatherrv.com/",
+    img: "/assets/camping/camp-grandfather.jpg",
+  },
+];
+
+const RESOURCES = [
+  { name: "Avery County Restaurants & Lodging", url: "Visitor guide (PDF)", href: "https://eadn-wc01-3254965.nxedge.io/wp-content/uploads/2023/04/2023AveryCounty3-9-23-FINAL-for-web.pdf" },
+  { name: "Explore Boone", url: "exploreboone.com", href: "https://www.exploreboone.com/" },
+];
+---
+<PageLayout title="Camping & Resources">
+  <main>
+    <div class="pageheader section--cream">
+      <div class="container">
+        <div class="eyebrow">Plan Your Stay</div>
+        <hr class="tickrule" />
+        <h1 class="pageheader__title">Camping &amp;<br />local resources.</h1>
+        <p class="lead" style="margin-top:18px">There's no on-site camping at Singing on Grandfather, but the High Country has plenty of campgrounds nearby. A few to explore below — these aren't affiliated with the festival.</p>
+      </div>
+    </div>
+
+    <section class="section section--cream section--tight">
+      <div class="container">
+        <div class="section__head">
+          <div class="eyebrow">Campgrounds Nearby</div>
+        </div>
+        <div class="camp-grid">
+          {CAMPGROUNDS.map(({ name, url, href, img }) => (
+            <a class="camp-card" href={href} target="_blank" rel="noopener noreferrer">
+              <div class="camp-card__img" style={`background-image:url(${img})`}></div>
+              <div class="camp-card__body">
+                <div class="camp-card__name">{name}</div>
+                <div class="camp-card__url">{url} →</div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sunk">
+      <div class="container">
+        <div class="section__head">
+          <div class="eyebrow">Other Local Resources</div>
+        </div>
+        <div class="res-grid">
+          {RESOURCES.map(({ name, url, href }) => (
+            <a class="res-card" href={href} target="_blank" rel="noopener noreferrer">
+              <div class="res-card__name">{name}</div>
+              <div class="res-card__url">{url} →</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--pine section--center">
+      <div class="container" style="text-align:center">
+        <div class="eyebrow">Before You Come</div>
+        <h2 style="margin-top:14px">Bring a chair, a blanket, a picnic.</h2>
+        <p style="color:var(--fg-on-dark-muted);font-size:17px;max-width:520px;margin:0 auto 30px">No alcohol, no pets, no on-site camping — just a day of song in the meadow.</p>
+        <a class="btn btn--accent btn--lg" href="https://www.eventbrite.com/e/singing-on-grandfather-2026-tickets-1983169223533" target="_blank" rel="noopener noreferrer">Reserve Your Free Ticket</a>
+      </div>
+    </section>
+  </main>
+</PageLayout>
+
+<style>
+  .camp-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+  }
+  @media (max-width: 860px) {
+    .camp-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .camp-grid { grid-template-columns: 1fr; }
+  }
+
+  .camp-card {
+    display: block;
+    text-decoration: none;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: var(--cream-50);
+    transition: box-shadow 0.18s, transform 0.18s;
+  }
+  .camp-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px);
+  }
+  .camp-card__img {
+    aspect-ratio: 4 / 3;
+    background-size: cover;
+    background-position: center;
+  }
+  .camp-card__body {
+    padding: 16px 18px 18px;
+  }
+  .camp-card__name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--pine-900);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .camp-card__url {
+    font-size: 12px;
+    color: var(--sky-700);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+</style>

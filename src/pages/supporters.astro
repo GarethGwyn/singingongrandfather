@@ -1,0 +1,246 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const donated    = Astro.url.searchParams.get('donated') === 'true';
+const cancelled  = Astro.url.searchParams.get('cancelled') === 'true';
+const donatedAmt = Astro.url.searchParams.get('amt');
+const donatedFreq = Astro.url.searchParams.get('freq');
+
+const CONTRIB_LOGOS = [
+  { name: "The Avery Journal Times",               img: "/assets/contributors/avery-journal.png" },
+  { name: "Town of Boone Cultural Resources",      img: "/assets/contributors/town-of-boone.png" },
+  { name: "Piedmont Direct Mail",                  img: "/assets/contributors/piedmont-mail.png" },
+  { name: "Grandfather Mountain Stewardship Foundation", img: "/assets/contributors/gfm-stewardship.png" },
+  { name: "Crossnore Communities for Children",   img: "/assets/contributors/crossnore.png" },
+  { name: "Avery County Rescue Squad",             img: "/assets/contributors/avery-rescue.png" },
+  { name: "Grandfather Mountain Highland Games",   img: "/assets/contributors/highland-games.png" },
+  { name: "The Festive Elk",                       img: "/assets/contributors/festive-elk.webp" },
+  { name: "Explore Boone",                         img: "/assets/contributors/explore-boone.jpg" },
+  { name: "Courtyard by Marriott",                 img: "/assets/contributors/courtyard-marriott.png" },
+  { name: "Poster Design by Shake",                img: "/assets/contributors/shake.png" },
+];
+const PATRONS = ["S. B. Rudnick", "The Betty P. Kenan Foundation", "The Kenan Family Foundation", "Trey Doak", "Gail & Chris Barley"];
+const GIVE_EMAIL = "mailto:owengwyn@me.com?subject=Singing%20on%20Grandfather%20-%20Inquiry";
+---
+<PageLayout title="Support the Ministry">
+  <main>
+    <div class="pageheader section--cream">
+      <div class="container">
+        <div class="eyebrow">Get Involved</div>
+        <hr class="tickrule" />
+        <h1 class="pageheader__title">Support the<br />ministry.</h1>
+        <p class="lead" style="margin-top:18px">Singing on Grandfather Foundation is a registered <strong>501(c)(3)</strong> tax-exempt non-profit. All gifts are tax-deductible to the full extent allowed by law.</p>
+      </div>
+    </div>
+
+    <!-- Ways to give -->
+    <section class="section section--cream section--tight">
+      <div class="container">
+        <div class="give-grid">
+          <div class="give-card give-card--active">
+            <div class="perf__role" style="margin-bottom:8px">Give</div>
+            <h4>Donate</h4>
+            <p>Your gift keeps the gathering free for every family, every year.</p>
+            <a class="give-card__cta" href="#donate-form">Make a gift ↓</a>
+          </div>
+          <div class="give-card">
+            <div class="perf__role" style="margin-bottom:8px">Partner</div>
+            <h4>Sponsor</h4>
+            <p>Explore sponsorship opportunities for the festival and its mission.</p>
+          </div>
+          <div class="give-card">
+            <div class="perf__role" style="margin-bottom:8px">Serve</div>
+            <h4>Volunteer</h4>
+            <p>Join our growing team and help carry the tradition forward.</p>
+          </div>
+        </div>
+        <p class="caption" style="margin-top:22px">To learn more, donate, sponsor, or volunteer, contact Owen Gwyn at <a href={GIVE_EMAIL}>owengwyn@me.com</a>. &nbsp;DLN 26053404003924.</p>
+      </div>
+    </section>
+
+    <!-- Donate widget -->
+    <section class="section section--sky section--center" id="donate-form">
+      <div class="container">
+        {donated ? (
+          <div class="donate-success">
+            <div style="font-size:40px;margin-bottom:16px">🙏</div>
+            <h3 style="margin-top:0;margin-bottom:12px;color:var(--pine-900)">Thank you for your gift!</h3>
+            <p style="color:var(--ink-600);max-width:400px;margin:0 auto 24px">
+              {donatedFreq && donatedFreq !== 'One-Time'
+                ? `Your ${donatedFreq?.toLowerCase()} donation${donatedAmt ? ` of $${donatedAmt}` : ''} is set up. You'll receive a receipt by email.`
+                : `Your donation${donatedAmt ? ` of $${donatedAmt}` : ''} was received. You'll get a receipt by email.`}
+            </p>
+            <a class="btn btn--secondary" href="/supporters">Make another gift</a>
+          </div>
+        ) : (
+          <div class="donate" style="text-align:left">
+            <div class="eyebrow" style="margin-bottom:6px">Support This Ministry</div>
+            <h3 style="margin-top:0;margin-bottom:20px">Make a gift</h3>
+            {cancelled && (
+              <p style="color:var(--coral-600);font-size:14px;margin-bottom:16px">Your donation was not completed. Please try again.</p>
+            )}
+            <!-- Amount selector -->
+            <div class="amt-row" id="amt-row">
+              <button class="amt is-on" data-amt="10">$10</button>
+              <button class="amt" data-amt="20">$20</button>
+              <button class="amt" data-amt="30">$30</button>
+              <button class="amt" data-amt="40">$40</button>
+              <button class="amt" data-amt="custom">Custom</button>
+            </div>
+            <input id="custom-amt" class="inp" style="display:none;width:100%;margin-bottom:18px" placeholder="$  Enter an amount" type="number" min="1" />
+            <!-- Frequency selector -->
+            <div class="freq-row" id="freq-row">
+              <button class="freq" data-freq="One-Time">One-Time</button>
+              <button class="freq is-on" data-freq="Monthly">Monthly</button>
+              <button class="freq" data-freq="Weekly">Weekly</button>
+              <button class="freq" data-freq="Quarterly">Quarterly</button>
+              <button class="freq" data-freq="Annual">Annual</button>
+            </div>
+            <label style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-700);margin-bottom:22px;cursor:pointer">
+              <input type="checkbox" id="cover-fee" checked /> Cover the 3% processing fee
+            </label>
+            <p id="error-msg" style="display:none;color:var(--coral-600);font-size:14px;margin-bottom:12px"></p>
+            <button id="donate-btn" class="btn btn--accent btn--lg" style="width:100%;display:flex;justify-content:center;border:none;cursor:pointer">Donate Monthly $10</button>
+            <p style="font-size:12px;color:var(--ink-400);margin-top:12px;text-align:center">Secured by Stripe · 501(c)(3) · All gifts tax-deductible</p>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Contributors -->
+    <section class="section section--cream">
+      <div class="container">
+        <div style="text-align:center;margin:0 auto 40px">
+          <div class="eyebrow">With Gratitude</div>
+          <h2 style="margin-top:12px">Our contributors</h2>
+        </div>
+        <div class="contrib-logos">
+          {CONTRIB_LOGOS.map(c => (
+            <div class="contrib-logo">
+              <img src={c.img} alt={c.name} loading="lazy" />
+              <span>{c.name}</span>
+            </div>
+          ))}
+        </div>
+        <div style="text-align:center;margin-top:48px;padding-top:40px;border-top:1px solid var(--line)">
+          <div class="eyebrow">And Our Patrons</div>
+          <p class="patrons__names" style="margin-top:14px;text-align:center;max-width:none;margin-left:auto;margin-right:auto">{PATRONS.join("  ·  ")}</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</PageLayout>
+
+<script>
+  let selectedAmt: number | 'custom' = 10;
+  let selectedFreq = 'Monthly';
+
+  const amtBtns    = document.querySelectorAll<HTMLButtonElement>('#amt-row .amt');
+  const freqBtns   = document.querySelectorAll<HTMLButtonElement>('#freq-row .freq');
+  const customInput = document.getElementById('custom-amt') as HTMLInputElement | null;
+  const donateBtn  = document.getElementById('donate-btn') as HTMLButtonElement | null;
+  const errorMsg   = document.getElementById('error-msg') as HTMLParagraphElement | null;
+  const coverFee   = document.getElementById('cover-fee') as HTMLInputElement | null;
+
+  if (!donateBtn) {
+    // We're on the success state — nothing to wire up
+    throw new Error('stop');
+  }
+
+  function updateBtn() {
+    const amtDisplay = selectedAmt === 'custom'
+      ? (customInput?.value ? `$${customInput.value}` : '')
+      : `$${selectedAmt}`;
+    const freqDisplay = selectedFreq === 'One-Time' ? '' : `${selectedFreq} `;
+    donateBtn!.textContent = `Donate ${freqDisplay}${amtDisplay}`.trim();
+  }
+
+  amtBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      amtBtns.forEach(b => b.classList.remove('is-on'));
+      btn.classList.add('is-on');
+      const val = btn.dataset.amt!;
+      if (val === 'custom') {
+        selectedAmt = 'custom';
+        if (customInput) customInput.style.display = 'block';
+      } else {
+        selectedAmt = Number(val);
+        if (customInput) customInput.style.display = 'none';
+      }
+      updateBtn();
+    });
+  });
+
+  freqBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      freqBtns.forEach(b => b.classList.remove('is-on'));
+      btn.classList.add('is-on');
+      selectedFreq = btn.dataset.freq!;
+      updateBtn();
+    });
+  });
+
+  customInput?.addEventListener('input', updateBtn);
+  updateBtn();
+
+  donateBtn.addEventListener('click', async () => {
+    const amount = selectedAmt === 'custom' ? Number(customInput?.value) : selectedAmt;
+
+    if (!amount || amount < 1) {
+      if (errorMsg) { errorMsg.textContent = 'Please enter a donation amount.'; errorMsg.style.display = 'block'; }
+      return;
+    }
+    if (errorMsg) errorMsg.style.display = 'none';
+
+    donateBtn.textContent = 'Redirecting to checkout…';
+    donateBtn.disabled = true;
+
+    try {
+      const res = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount, frequency: selectedFreq, coverFee: coverFee?.checked ?? true }),
+      });
+
+      const data = await res.json() as { url?: string; error?: string };
+
+      if (!res.ok || !data.url) {
+        throw new Error(data.error ?? 'Could not start checkout.');
+      }
+
+      window.location.href = data.url;
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Something went wrong.';
+      if (errorMsg) { errorMsg.textContent = message; errorMsg.style.display = 'block'; }
+      donateBtn.disabled = false;
+      updateBtn();
+    }
+  });
+</script>
+
+<style>
+  .give-card--active {
+    border-color: var(--accent-deep);
+    box-shadow: 0 0 0 1px var(--accent-deep);
+  }
+  .give-card__cta {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-deep);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .give-card__cta:hover { text-decoration: underline; }
+
+  .donate-success {
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    background: var(--cream-50);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+</style>

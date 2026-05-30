@@ -1,0 +1,148 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+const ARCHIVE = {
+  2025: {
+    date: "June 22, 2025",
+    time: "11am – 4pm · MacRae Meadows",
+    blurb: "A Christ-centered, non-denominational church picnic featuring The Cockman Family and Rev. Johnson Bowie.",
+    acts: [
+      { name: "The Cockman Family", role: "Headliner", feature: true, img: "/assets/performers/cockman-family.png" },
+      { name: "Rev. Johnson Bowie", role: "Speaker", feature: true, img: "/assets/performers/johnson-bowie.jpg" },
+      { name: "Patricia Smith", role: "Gospel", img: "/assets/performers/patricia-smith.jpg" },
+      { name: "The Collective", role: "Gospel Band", img: "/assets/performers/the-collective.png" },
+      { name: "Guilford", role: "Americana", img: "/assets/performers/guilford.jpg" },
+      { name: "Caldwell Men's Chorus", role: "Chorus", img: "/assets/performers/caldwell-mens-chorus.jpg" },
+      { name: "Arbor Dale Presbyterian", role: "Worship Choir", img: "/assets/performers/arbor-dale-presbyterian.jpg" },
+      { name: "Rev. Michael McKee", role: "Worship", img: "/assets/performers/rev-mckee.jpg" },
+    ],
+  },
+  2024: {
+    date: "June 16, 2024",
+    time: "9am – 3pm · Father's Day",
+    blurb: "A Father's Day picnic of local gospel music, with keynote Dr. Gary Chapman, author of The Five Love Languages.",
+    acts: [
+      { name: "Dr. Gary Chapman", role: "Keynote Speaker", feature: true, img: "/assets/performers/gary-chapman.jpg" },
+      { name: "The King James Boys", role: "Bluegrass Gospel", feature: true, img: "/assets/performers/king-james-boys.png" },
+      { name: "Michael Combs", role: "Gospel", img: "/assets/performers/michael-combs.jpg" },
+      { name: "Patricia Smith", role: "Gospel", img: "/assets/performers/patricia-smith-2024.png" },
+      { name: "Charles Pettee & FolkPsalm", role: "Folk Psalms", img: "/assets/performers/folkpsalm.jpg" },
+      { name: "Erica Renee McKinney", role: "Singer-Songwriter", img: "/assets/performers/erica-mckinney.png" },
+      { name: "Servant's Heart", role: "Gospel Trio", img: "/assets/performers/servants-heart.jpg" },
+      { name: "New Covenant", role: "Southern Gospel", img: "/assets/performers/new-covenant.png" },
+      { name: "The Collective", role: "Gospel Band", img: "/assets/performers/the-collective.png" },
+    ],
+  },
+};
+---
+<PageLayout title="The Archive">
+  <main>
+    <div class="pageheader section--cream">
+      <div class="container">
+        <a class="nav__link" style="margin-bottom:18px;color:var(--sky-700);display:inline-block" href="/lineup">← Back to 2026 Line Up</a>
+        <div class="eyebrow">Past Line Ups</div>
+        <hr class="tickrule" />
+        <h1 class="pageheader__title">The archive.</h1>
+        <div class="yeartoggle">
+          <button class="yeartoggle__btn is-on" data-year="2025">2025</button>
+          <button class="yeartoggle__btn" data-year="2024">2024</button>
+        </div>
+      </div>
+    </div>
+
+    {[2025, 2024].map(year => {
+      const data = ARCHIVE[year as 2025 | 2024];
+      const features = data.acts.filter(a => a.feature);
+      const rest = data.acts.filter(a => !a.feature);
+      return (
+        <div data-archive={year} class={year === 2025 ? '' : 'archive-hidden'}>
+          <section class="section section--cream section--tight">
+            <div class="container">
+              <div class="section__head">
+                <div class="eyebrow">{data.date}</div>
+                <h2 style="margin-top:10px">{data.time}</h2>
+                <p class="lead" style="margin-top:12px">{data.blurb}</p>
+              </div>
+              <div class="grid-performers">
+                {features.map(a => (
+                  <div class="perf">
+                    <div class="perf__img" style={`background-image:url(${a.img})`}></div>
+                    <div class="perf__body">
+                      <div class="perf__role">{a.role}</div>
+                      <h3 class="perf__name">{a.name}</h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {(year === 2025 || year === 2024) && (
+                <div class="video-wrap" style="margin-top:48px">
+                  <div class="eyebrow" style="margin-bottom:16px">{year} Overview Reel</div>
+                  <div class="video-resp">
+                    <iframe
+                      src={`https://www.youtube-nocookie.com/embed/${year === 2025 ? 'akOwD2tajYM' : 'TZoximbEUjU'}`}
+                      title={`Singing on Grandfather ${year} Overview`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+          <section class="section section--sunk">
+            <div class="container">
+              <div class="section__head">
+                <div class="eyebrow">Also That Year</div>
+                <h2>The full day</h2>
+              </div>
+              <div class="grid-4">
+                {rest.map(a => (
+                  <div class="perf perf--sm">
+                    <div class="perf__img" style={`background-image:url(${a.img})`}></div>
+                    <div class="perf__body">
+                      <div class="perf__role">{a.role}</div>
+                      <h3 class="perf__name">{a.name}</h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </div>
+      );
+    })}
+  </main>
+</PageLayout>
+
+<style>
+  .archive-hidden { display: none; }
+  .video-resp {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--pine-900);
+    box-shadow: var(--shadow-lg);
+  }
+  .video-resp iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>
+
+<script>
+  const yearBtns = document.querySelectorAll<HTMLButtonElement>('.yeartoggle__btn');
+  const archiveSections = document.querySelectorAll<HTMLElement>('[data-archive]');
+
+  yearBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const year = btn.dataset.year!;
+      yearBtns.forEach(b => b.classList.toggle('is-on', b.dataset.year === year));
+      archiveSections.forEach(s => s.classList.toggle('archive-hidden', s.dataset.archive !== year));
+    });
+  });
+</script>
