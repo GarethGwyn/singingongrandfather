@@ -15,40 +15,57 @@ import PageLayout from '../layouts/PageLayout.astro';
 
     <section class="section section--cream section--tight">
       <div class="container">
-        <div class="poster-year-label">2026</div>
-        <div class="poster-grid poster-grid--single">
-          <div class="poster-card">
-            <a href="/assets/brand/poster-2026-v1.png" target="_blank" rel="noopener noreferrer">
-              <img src="/assets/brand/poster-2026-v1.png" alt="Singing on Grandfather 2026 Poster" />
-            </a>
+        <p class="poster-caption-top">Click a poster to open full resolution.</p>
+        <div class="poster-row">
+          <div class="poster-col">
+            <div class="poster-year-label">2026</div>
+            <div class="poster-card">
+              <a href="/assets/brand/poster-2026-v1.png" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/brand/poster-2026-v1.png" alt="Singing on Grandfather 2026 Poster" />
+              </a>
+            </div>
+          </div>
+          <div class="poster-col">
+            <div class="poster-year-label">2025</div>
+            <div class="poster-card">
+              <a href="/assets/brand/poster-2025.png" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/brand/poster-2025.png" alt="Singing on Grandfather 2025 Poster" />
+              </a>
+            </div>
+          </div>
+          <div class="poster-col">
+            <div class="poster-year-label">2024</div>
+            <div class="poster-card">
+              <a href="/assets/brand/poster-2024.png" target="_blank" rel="noopener noreferrer">
+                <img src="/assets/brand/poster-2024.png" alt="Singing on Grandfather 2024 Poster" />
+              </a>
+            </div>
           </div>
         </div>
-
-        <div class="poster-year-label" style="margin-top:64px">2025</div>
-        <div class="poster-grid poster-grid--single">
-          <div class="poster-card">
-            <a href="/assets/brand/poster-2025.png" target="_blank" rel="noopener noreferrer">
-              <img src="/assets/brand/poster-2025.png" alt="Singing on Grandfather 2025 Poster" />
-            </a>
-          </div>
-        </div>
-
-        <div class="poster-year-label" style="margin-top:64px">2024</div>
-        <div class="poster-grid poster-grid--single">
-          <div class="poster-card">
-            <a href="/assets/brand/poster-2024.png" target="_blank" rel="noopener noreferrer">
-              <img src="/assets/brand/poster-2024.png" alt="Singing on Grandfather 2024 Poster" />
-            </a>
-          </div>
-        </div>
-
-        <p class="caption" style="margin-top:32px;text-align:center">Click a poster to open full resolution.</p>
       </div>
     </section>
   </main>
 </PageLayout>
 
 <style>
+  .poster-caption-top {
+    font-size: 12px;
+    color: var(--ink-400);
+    text-align: center;
+    margin-bottom: 32px;
+    letter-spacing: 0.03em;
+  }
+  .poster-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .poster-col {
+    display: flex;
+    flex-direction: column;
+  }
   .poster-year-label {
     font-family: var(--font-display);
     font-size: 13px;
@@ -56,23 +73,8 @@ import PageLayout from '../layouts/PageLayout.astro';
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-400);
-    margin-bottom: 24px;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .poster-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  .poster-grid--single {
-    grid-template-columns: 1fr;
-    max-width: 440px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-bottom: 14px;
+    text-align: center;
   }
   .poster-card {
     border-radius: var(--radius-lg);
@@ -86,7 +88,7 @@ import PageLayout from '../layouts/PageLayout.astro';
   }
   .poster-card a { display: block; line-height: 0; }
   .poster-card img { width: 100%; height: auto; display: block; }
-  @media (max-width: 640px) {
-    .poster-grid { grid-template-columns: 1fr; gap: 28px; }
+  @media (max-width: 700px) {
+    .poster-row { grid-template-columns: 1fr; gap: 36px; }
   }
 </style>
