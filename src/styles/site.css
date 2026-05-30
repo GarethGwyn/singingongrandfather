@@ -201,10 +201,8 @@
 .roster-row__avatar.is-empty { background: var(--cream-200); color: var(--ink-400); font-weight: 400; }
 .roster-row__avatar.is-logo { background: var(--cream-100); border: 1px solid var(--line); }
 .roster-row__avatar.is-logo img { width: 28px; height: 28px; object-fit: contain; opacity: 0.6; }
-.roster-row__year { width: 58px; flex: none; font-family: var(--font-mono); font-size: 13px; color: var(--ink-500); }
-.roster-row__name { font-size: 16px; color: var(--ink-900); line-height: 1.4; }
-.roster-row.is-notable .roster-row__name { font-weight: 600; }
-.roster-row.is-notable .roster-row__year { color: var(--accent-deep); font-weight: 600; }
+.roster-row__year { width: 58px; flex: none; font-family: var(--font-mono); font-size: 13px; color: var(--coral-600); font-weight: 600; }
+.roster-row__name { font-size: 16px; color: var(--pine-900); font-weight: 700; line-height: 1.4; }
 .roster-row__tag { margin-left: auto; flex: none; font-size: 10.5px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-deep); padding-top: 3px; }
 .roster-row__name .muted { color: var(--ink-400); font-style: italic; }
 
