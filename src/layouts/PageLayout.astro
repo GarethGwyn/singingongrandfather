@@ -1,7 +1,6 @@
 ---
 import '../styles/tokens.css';
 import '../styles/site.css';
-import EmailSignup from '../components/EmailSignup.astro';
 
 interface Props {
   title?: string;
@@ -93,6 +92,67 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
         mobile.classList.remove('is-open');
         document.body.classList.remove('nav-open');
       }));
+
+      // Footer signup — swap email → name field
+      (() => {
+        const form = document.getElementById('footer-signup');
+        if (!form) return;
+        const hiddenEmail = form.querySelector('input[name="email"]');
+        const field       = form.querySelector('#footer-field');
+        const btn         = form.querySelector('button[type="submit"]');
+        const msg         = form.querySelector('.footer-signup__msg');
+        let step = 1;
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (step === 1) {
+            const val = field.value.trim();
+            if (!val || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+              msg.textContent = 'Please enter a valid email.';
+              return;
+            }
+            hiddenEmail.value = val;
+            msg.textContent = '';
+            // Swap to name field
+            field.style.opacity = '0';
+            setTimeout(() => {
+              field.type = 'text';
+              field.placeholder = 'Your name';
+              field.autocomplete = 'name';
+              field.value = '';
+              field.style.opacity = '1';
+              btn.textContent = 'Sign Up';
+              step = 2;
+              field.focus();
+            }, 150);
+            return;
+          }
+
+          // Step 2 — submit
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+          const name = field.value.trim();
+          const [firstName, ...rest] = name.split(' ');
+          try {
+            const res = await fetch('/api/subscribe', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: hiddenEmail.value,
+                firstName: firstName || undefined,
+                lastName: rest.join(' ') || undefined,
+              }),
+            });
+            const data = await res.json();
+            if (!res.ok || data.error) throw new Error(data.error ?? 'Something went wrong.');
+            form.innerHTML = '<p style="font-size:14px;font-weight:600;color:var(--cream-200)">You\'re on the list!</p>';
+          } catch (err) {
+            msg.textContent = err.message ?? 'Could not subscribe — please try again.';
+            btn.disabled = false;
+            btn.textContent = 'Sign Up';
+          }
+        });
+      })();
     </script>
 
     <slot />
@@ -125,7 +185,14 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
               <a href="/supporters">Support the Festival</a>
               <div style="margin-top:16px">
                 <div style="font-size:12px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--cream-300);margin-bottom:8px">Stay Connected</div>
-                <EmailSignup id="footer-signup" dark compact progressive btnLabel="Sign Up" />
+                <form id="footer-signup" class="footer-signup" novalidate>
+                  <input type="hidden" name="email" />
+                  <div class="footer-signup__row">
+                    <input class="footer-signup__input" id="footer-field" type="email" placeholder="Your email address" autocomplete="email" />
+                    <button class="footer-signup__btn btn btn--accent" type="submit">Next →</button>
+                  </div>
+                  <p class="footer-signup__msg" aria-live="polite"></p>
+                </form>
               </div>
             </div>
           </div>
@@ -140,6 +207,32 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 </html>
 
 <style>
+  .footer-signup__row {
+    display: flex;
+    gap: 8px;
+  }
+  .footer-signup__input {
+    flex: 1;
+    min-width: 0;
+    padding: 9px 12px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 13px;
+    outline: none;
+    transition: opacity 0.15s, border-color 0.15s;
+  }
+  .footer-signup__input::placeholder { color: rgba(255,255,255,0.45); }
+  .footer-signup__input:focus { border-color: rgba(255,255,255,0.5); }
+  .footer-signup__msg {
+    margin-top: 6px;
+    font-size: 12px;
+    color: #fca5a5;
+    min-height: 16px;
+  }
+
   /* Make nav links behave as links, not buttons */
   .nav__link {
     text-decoration: none;
