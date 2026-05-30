@@ -27,3 +27,4 @@ pnpm-debug.log*
 # Design/handoff assets
 Singing on Grandfather/
 Singing on Grandfather.zip
+.env*
