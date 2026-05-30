@@ -1,0 +1,118 @@
+---
+interface Props {
+  id: string;        // unique id so multiple instances don't clash
+  dark?: boolean;    // true = white text on dark background
+  compact?: boolean; // true = side-by-side input+button (footer/inline)
+  placeholder?: string;
+  btnLabel?: string;
+}
+
+const {
+  id,
+  dark = false,
+  compact = false,
+  placeholder = 'Your email address',
+  btnLabel = 'Stay Connected',
+} = Astro.props;
+---
+
+<form class={`email-signup${compact ? ' email-signup--compact' : ''}${dark ? ' email-signup--dark' : ''}`}
+      id={id}
+      novalidate>
+  <div class="email-signup__row">
+    <input
+      class="email-signup__input"
+      type="email"
+      name="email"
+      autocomplete="email"
+      placeholder={placeholder}
+      required
+    />
+    <button class="email-signup__btn btn btn--accent" type="submit">{btnLabel}</button>
+  </div>
+  <p class="email-signup__msg" aria-live="polite"></p>
+</form>
+
+<script define:vars={{ id }}>
+  const form = document.getElementById(id);
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input[name="email"]');
+      const msg   = form.querySelector('.email-signup__msg');
+      const btn   = form.querySelector('button[type="submit"]');
+      const email = input?.value?.trim();
+
+      if (!email) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      if (msg) { msg.textContent = ''; msg.className = 'email-signup__msg'; }
+
+      try {
+        const res  = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        const data = await res.json();
+
+        if (!res.ok || data.error) throw new Error(data.error ?? 'Something went wrong.');
+
+        form.innerHTML = '<p class="email-signup__success">You\'re on the list! We\'ll be in touch before June 28.</p>';
+      } catch (err) {
+        if (msg) {
+          msg.textContent = err.message ?? 'Could not subscribe — please try again.';
+          msg.className = 'email-signup__msg is-error';
+        }
+        btn.disabled = false;
+        btn.textContent = 'Try again';
+      }
+    });
+  }
+</script>
+
+<style>
+  .email-signup__row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .email-signup--compact .email-signup__row {
+    flex-direction: row;
+  }
+  .email-signup__input {
+    flex: 1;
+    padding: 11px 14px;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--ink-900);
+    background: #fff;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .email-signup__input:focus { border-color: var(--accent); }
+  .email-signup--dark .email-signup__input {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.3);
+    color: #fff;
+  }
+  .email-signup--dark .email-signup__input::placeholder { color: rgba(255,255,255,0.5); }
+  .email-signup__btn { white-space: nowrap; }
+  .email-signup__msg {
+    margin-top: 8px;
+    font-size: 13px;
+    min-height: 18px;
+  }
+  .email-signup__msg.is-error { color: var(--coral-600); }
+  .email-signup--dark .email-signup__msg.is-error { color: #fca5a5; }
+  .email-signup__success {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--pine-700);
+    margin: 0;
+  }
+  .email-signup--dark .email-signup__success { color: var(--cream-100); }
+</style>

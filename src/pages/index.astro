@@ -1,5 +1,6 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
+import EmailSignup from '../components/EmailSignup.astro';
 
 const ALDRIDGE = "/assets/performers/aldridge.png";
 const ED_GRAHAM = "/assets/performers/ed-graham.jpg";
@@ -155,6 +156,20 @@ const trucks = [
       </video>
     </div>
 
+    <!-- Email capture band -->
+    <section class="section email-band">
+      <div class="container email-band__inner">
+        <div>
+          <div class="eyebrow" style="color:var(--brass-400);margin-bottom:8px">Stay Connected</div>
+          <h2 style="margin:0 0 6px;color:var(--pine-900)">Be the first to know.</h2>
+          <p style="color:var(--ink-500);font-size:16px;margin:0">Festival updates, line-up announcements, and more — straight to your inbox.</p>
+        </div>
+        <div class="email-band__form">
+          <EmailSignup id="home-signup" />
+        </div>
+      </div>
+    </section>
+
     <!-- Getting There -->
     <section class="section section--pine" id="getting-there">
       <div class="container">
@@ -301,6 +316,23 @@ const trucks = [
   .food-chip__icon {
     font-size: 17px;
     line-height: 1;
+  }
+
+  .email-band {
+    background: var(--cream-100);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .email-band__inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .email-band__form { max-width: 440px; }
+  @media (max-width: 720px) {
+    .email-band__inner { grid-template-columns: 1fr; gap: 24px; }
+    .email-band__form { max-width: 100%; }
   }
 
   /* Hero: fixed cinematic height, video fills + crops */
