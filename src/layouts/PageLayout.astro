@@ -9,7 +9,7 @@ interface Props {
 
 const {
   title = 'Singing on Grandfather',
-  description = 'A century of gospel music on Grandfather Mountain. Where Voices Rise Above the Clouds. MacRae Meadows, Linville, NC — Sunday, June 28, 2026.',
+  description = 'A century of gospel music on Grandfather Mountain. Halfway to Heaven. MacRae Meadows, Linville, NC — Sunday, June 28, 2026.',
 } = Astro.props;
 
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -32,9 +32,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
   <body>
     <nav class="nav" id="main-nav">
       <a class="nav__brand" href="/" aria-label="Singing on Grandfather home">
-        <div class="nav__logo-clip">
-          <img src="/assets/brand/logo-fullcolor.png" alt="Singing on Grandfather" />
-        </div>
+        <img src="/assets/brand/logo-fullcolor.png" alt="Singing on Grandfather" />
       </a>
       <div class="nav__links">
         {[
@@ -163,10 +161,8 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
       <div class="container">
         <div class="footer__top">
           <div class="footer__brand">
-            <div class="footer__logo-clip">
-              <img src="/assets/brand/logo-reversed.png" alt="Singing on Grandfather" />
-            </div>
-            <div class="footer__tag">A century of gospel music on Grandfather Mountain. Where Voices Rise Above the Clouds.</div>
+            <img src="/assets/brand/logo-reversed.png" alt="Singing on Grandfather" />
+            <div class="footer__tag">A century of gospel music on Grandfather Mountain. Halfway to Heaven.</div>
           </div>
           <div class="footer__cols">
             <div class="footer__col">
