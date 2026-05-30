@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" width="120" height="80">
+  <!-- Outer lens ring -->
+  <ellipse cx="60" cy="40" rx="54" ry="36" fill="none" stroke="#283A2E" stroke-width="3"/>
+  <!-- Inner iris ring -->
+  <ellipse cx="60" cy="40" rx="30" ry="30" fill="none" stroke="#283A2E" stroke-width="2"/>
+  <!-- PP text -->
+  <text x="60" y="47" text-anchor="middle" font-family="Georgia, serif" font-size="22" font-weight="700" letter-spacing="2" fill="#283A2E">PP</text>
+</svg>
