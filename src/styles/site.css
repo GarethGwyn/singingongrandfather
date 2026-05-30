@@ -217,7 +217,6 @@
 .sched-row__time { width: 104px; flex: none; font-family: var(--font-mono); font-size: 13px; color: var(--sky-700); font-weight: 500; }
 .sched-row__act { font-family: var(--font-display); font-weight: 600; font-size: 19px; color: var(--pine-900); }
 .sched-row.is-feature { background: linear-gradient(90deg, rgba(233,153,107,0.10), transparent); }
-.sched-row.is-light .sched-row__act { font-family: var(--font-text); font-weight: 500; font-size: 16px; color: var(--ink-500); }
 
 /* ---------- YEAR TOGGLE (archive) ---------- */
 .yeartoggle { display: flex; gap: 10px; margin-top: 26px; }
