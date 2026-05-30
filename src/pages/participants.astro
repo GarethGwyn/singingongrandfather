@@ -250,9 +250,7 @@ for (const [y, n, meta] of PARTICIPANTS) {
                   <div class={`roster-row${meta.notable ? ' is-notable' : ''}`}>
                     {imgUrl
                       ? <div class="roster-row__avatar" data-archival="true" style={`background-image:url(${imgUrl})`}></div>
-                      : isMuted
-                        ? <div class="roster-row__avatar is-empty">–</div>
-                        : <div class="roster-row__avatar is-logo"><img src="/assets/brand/logo-fullcolor.png" alt="" /></div>
+                      : <div class="roster-row__avatar is-logo"><img src="/assets/brand/logo-fullcolor.png" alt="" /></div>
                     }
                     <div class="roster-row__year tnum">{year}</div>
                     <div class="roster-row__name">
