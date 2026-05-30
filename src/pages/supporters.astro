@@ -142,10 +142,7 @@ const GIVE_EMAIL = "mailto:owengwyn@me.com?subject=Singing%20on%20Grandfather%20
   const errorMsg   = document.getElementById('error-msg') as HTMLParagraphElement | null;
   const coverFee   = document.getElementById('cover-fee') as HTMLInputElement | null;
 
-  if (!donateBtn) {
-    // We're on the success state — nothing to wire up
-    throw new Error('stop');
-  }
+  if (donateBtn) { // not rendered on the success/cancelled state
 
   function updateBtn() {
     const amtDisplay = selectedAmt === 'custom'
@@ -216,6 +213,8 @@ const GIVE_EMAIL = "mailto:owengwyn@me.com?subject=Singing%20on%20Grandfather%20
       updateBtn();
     }
   });
+
+  } // end if (donateBtn)
 </script>
 
 <style>
