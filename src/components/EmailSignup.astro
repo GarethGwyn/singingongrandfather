@@ -2,8 +2,9 @@
 interface Props {
   id: string;
   dark?: boolean;
-  compact?: boolean;   // side-by-side input+button (footer/homepage band)
-  showName?: boolean;  // show first + last name fields above email
+  compact?: boolean;      // side-by-side input+button
+  showName?: boolean;     // show name fields above email (stacked)
+  progressive?: boolean;  // email first, name reveals after (footer)
   placeholder?: string;
   btnLabel?: string;
 }
@@ -13,6 +14,7 @@ const {
   dark = false,
   compact = false,
   showName = false,
+  progressive = false,
   placeholder = 'Your email address',
   btnLabel = 'Stay Connected',
 } = Astro.props;
@@ -27,6 +29,12 @@ const {
       <input class="email-signup__input" type="text" name="lastName"  placeholder="Last name"  autocomplete="family-name" />
     </div>
   )}
+  {progressive && (
+    <div class="email-signup__name-row email-signup__name-reveal" style="display:none">
+      <input class="email-signup__input" type="text" name="firstName" placeholder="First name" autocomplete="given-name" />
+      <input class="email-signup__input" type="text" name="lastName"  placeholder="Last name"  autocomplete="family-name" />
+    </div>
+  )}
   <div class="email-signup__row">
     <input
       class="email-signup__input"
@@ -36,56 +44,77 @@ const {
       placeholder={placeholder}
       required
     />
-    <button class="email-signup__btn btn btn--accent" type="submit">{btnLabel}</button>
+    <button class="email-signup__btn btn btn--accent" type="submit">{progressive ? 'Next →' : btnLabel}</button>
   </div>
   <p class="email-signup__msg" aria-live="polite"></p>
 </form>
 
-<script define:vars={{ id }}>
+<script define:vars={{ id, progressive, btnLabel }}>
   const form = document.getElementById(id);
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const emailInput = form.querySelector('input[name="email"]');
-      const firstInput = form.querySelector('input[name="firstName"]');
-      const lastInput  = form.querySelector('input[name="lastName"]');
-      const msg  = form.querySelector('.email-signup__msg');
-      const btn  = form.querySelector('button[type="submit"]');
-      const email = emailInput?.value?.trim();
+  if (!form) return;
 
-      if (!email) return;
+  const emailInput = form.querySelector('input[name="email"]');
+  const firstInput = form.querySelector('input[name="firstName"]');
+  const lastInput  = form.querySelector('input[name="lastName"]');
+  const nameReveal = form.querySelector('.email-signup__name-reveal');
+  const msg  = form.querySelector('.email-signup__msg');
+  const btn  = form.querySelector('button[type="submit"]');
 
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
-      if (msg) { msg.textContent = ''; msg.className = 'email-signup__msg'; }
+  let step = progressive ? 1 : 2; // 1 = email only, 2 = ready to submit
 
-      try {
-        const payload = {
-          email,
-          firstName: firstInput?.value?.trim() || undefined,
-          lastName:  lastInput?.value?.trim()  || undefined,
-        };
+  async function submitForm() {
+    const email = emailInput?.value?.trim();
+    if (!email) return;
 
-        const res  = await fetch('/api/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        });
-        const data = await res.json();
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    if (msg) { msg.textContent = ''; msg.className = 'email-signup__msg'; }
 
-        if (!res.ok || data.error) throw new Error(data.error ?? 'Something went wrong.');
-
-        form.innerHTML = '<p class="email-signup__success">You\'re on the list! We\'ll be in touch before June 28.</p>';
-      } catch (err) {
-        if (msg) {
-          msg.textContent = err.message ?? 'Could not subscribe — please try again.';
-          msg.className = 'email-signup__msg is-error';
-        }
-        btn.disabled = false;
-        btn.textContent = 'Try again';
+    try {
+      const payload = {
+        email,
+        firstName: firstInput?.value?.trim() || undefined,
+        lastName:  lastInput?.value?.trim()  || undefined,
+      };
+      const res  = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error ?? 'Something went wrong.');
+      form.innerHTML = '<p class="email-signup__success">You\'re on the list! We\'ll be in touch before June 28.</p>';
+    } catch (err) {
+      if (msg) {
+        msg.textContent = err.message ?? 'Could not subscribe — please try again.';
+        msg.className = 'email-signup__msg is-error';
       }
-    });
+      btn.disabled = false;
+      btn.textContent = step === 1 ? 'Next →' : btnLabel;
+    }
   }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (progressive && step === 1) {
+      const email = emailInput?.value?.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        if (msg) { msg.textContent = 'Please enter a valid email.'; msg.className = 'email-signup__msg is-error'; }
+        return;
+      }
+      // Reveal name fields
+      if (nameReveal) nameReveal.style.display = 'flex';
+      if (msg) { msg.textContent = ''; msg.className = 'email-signup__msg'; }
+      btn.textContent = btnLabel;
+      emailInput.readOnly = true;
+      step = 2;
+      firstInput?.focus();
+      return;
+    }
+
+    await submitForm();
+  });
 </script>
 
 <style>
@@ -117,6 +146,7 @@ const {
     width: 100%;
   }
   .email-signup__input:focus { border-color: var(--accent); }
+  .email-signup__input[readonly] { opacity: 0.6; cursor: default; }
   .email-signup--dark .email-signup__input {
     background: rgba(255,255,255,0.1);
     border-color: rgba(255,255,255,0.3);
