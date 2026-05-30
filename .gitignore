@@ -24,9 +24,6 @@ pnpm-debug.log*
 .idea/
 .vercel
 
-# Large video files — upload separately to Vercel or CDN
-public/assets/video/
-
 # Design/handoff assets
 Singing on Grandfather/
 Singing on Grandfather.zip
