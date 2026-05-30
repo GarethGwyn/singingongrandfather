@@ -1,8 +1,9 @@
 ---
 interface Props {
-  id: string;        // unique id so multiple instances don't clash
-  dark?: boolean;    // true = white text on dark background
-  compact?: boolean; // true = side-by-side input+button (footer/inline)
+  id: string;
+  dark?: boolean;
+  compact?: boolean;   // side-by-side input+button (footer/homepage band)
+  showName?: boolean;  // show first + last name fields above email
   placeholder?: string;
   btnLabel?: string;
 }
@@ -11,6 +12,7 @@ const {
   id,
   dark = false,
   compact = false,
+  showName = false,
   placeholder = 'Your email address',
   btnLabel = 'Stay Connected',
 } = Astro.props;
@@ -19,6 +21,12 @@ const {
 <form class={`email-signup${compact ? ' email-signup--compact' : ''}${dark ? ' email-signup--dark' : ''}`}
       id={id}
       novalidate>
+  {showName && (
+    <div class="email-signup__name-row">
+      <input class="email-signup__input" type="text" name="firstName" placeholder="First name" autocomplete="given-name" />
+      <input class="email-signup__input" type="text" name="lastName"  placeholder="Last name"  autocomplete="family-name" />
+    </div>
+  )}
   <div class="email-signup__row">
     <input
       class="email-signup__input"
@@ -38,10 +46,12 @@ const {
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const input = form.querySelector('input[name="email"]');
-      const msg   = form.querySelector('.email-signup__msg');
-      const btn   = form.querySelector('button[type="submit"]');
-      const email = input?.value?.trim();
+      const emailInput = form.querySelector('input[name="email"]');
+      const firstInput = form.querySelector('input[name="firstName"]');
+      const lastInput  = form.querySelector('input[name="lastName"]');
+      const msg  = form.querySelector('.email-signup__msg');
+      const btn  = form.querySelector('button[type="submit"]');
+      const email = emailInput?.value?.trim();
 
       if (!email) return;
 
@@ -50,10 +60,16 @@ const {
       if (msg) { msg.textContent = ''; msg.className = 'email-signup__msg'; }
 
       try {
+        const payload = {
+          email,
+          firstName: firstInput?.value?.trim() || undefined,
+          lastName:  lastInput?.value?.trim()  || undefined,
+        };
+
         const res  = await fetch('/api/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify(payload),
         });
         const data = await res.json();
 
@@ -73,6 +89,12 @@ const {
 </script>
 
 <style>
+  .email-signup__name-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .email-signup__name-row .email-signup__input { flex: 1; }
   .email-signup__row {
     display: flex;
     flex-direction: column;
@@ -92,6 +114,7 @@ const {
     background: #fff;
     outline: none;
     transition: border-color 0.15s;
+    width: 100%;
   }
   .email-signup__input:focus { border-color: var(--accent); }
   .email-signup--dark .email-signup__input {
@@ -115,4 +138,7 @@ const {
     margin: 0;
   }
   .email-signup--dark .email-signup__success { color: var(--cream-100); }
+  @media (max-width: 480px) {
+    .email-signup__name-row { flex-direction: column; }
+  }
 </style>

@@ -42,13 +42,15 @@ async function addContact(email: string, token: string): Promise<Response> {
     body: JSON.stringify({
       email_address: { address: email, permission_to_send: 'implicit' },
       create_source: 'Account',
+      ...(firstName ? { first_name: firstName } : {}),
+      ...(lastName  ? { last_name:  lastName  } : {}),
       list_memberships: [listId],
     }),
   });
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const { email } = await request.json() as { email?: string };
+  const { email, firstName, lastName } = await request.json() as { email?: string; firstName?: string; lastName?: string };
 
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return new Response(JSON.stringify({ error: 'A valid email address is required.' }), { status: 400 });
