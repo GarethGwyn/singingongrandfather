@@ -104,6 +104,9 @@ const trucks = [
       </div>
     </section>
 
+    <!-- Illustration strip -->
+    <div class="art-band" aria-hidden="true"></div>
+
     <!-- Food on the grounds -->
     <section class="food-band">
       <div class="container" style="text-align:center">
@@ -220,6 +223,18 @@ const trucks = [
 </PageLayout>
 
 <style>
+  .art-band {
+    width: 100%;
+    height: 420px;
+    background-image: url(/assets/brand/poster-2026-v1.png);
+    background-size: cover;
+    background-position: center 52%;
+    overflow: hidden;
+  }
+  @media (max-width: 720px) {
+    .art-band { height: 280px; background-position: center 48%; }
+  }
+
   .dot { width:5px;height:5px;border-radius:50%;background:var(--brass-300);display:inline-block }
 
   .hero__directions-link {
