@@ -127,21 +127,18 @@ const trucks = [
       </div>
     </section>
 
-    <!-- Evergreen poster -->
-    <section class="section section--cream section--center" style="padding-top:56px;padding-bottom:56px">
-      <div class="container" style="display:flex;justify-content:center">
-        <img class="evergreen-poster" src="/assets/brand/poster-evergreen.jpg" alt="Singing on Grandfather — Where Voices Rise Above the Clouds" />
-      </div>
-    </section>
-
-    <!-- RSVP -->
-    <section class="section section--pine section--center">
-      <div class="container" style="text-align:center">
-        <div class="eyebrow">Free Admission</div>
-        <h2 style="margin-top:14px">Save your spot in the meadow.</h2>
-        <p style="color:var(--fg-on-dark-muted);font-size:17px;max-width:520px;margin:0 auto 30px">Tickets are free — reserving just helps us plan the day. Bring the whole family.</p>
-        <!-- TODO: point to Eventbrite or chosen ticketing -->
-        <a class="btn btn--accent btn--lg" href="https://www.eventbrite.com/e/singing-on-grandfather-2026-tickets-1983169223533" target="_blank" rel="noopener noreferrer">Reserve Your Free Ticket</a>
+    <!-- RSVP + Poster -->
+    <section class="section section--pine">
+      <div class="container">
+        <div class="rsvp-grid">
+          <img class="evergreen-poster" src="/assets/brand/poster-evergreen.jpg" alt="Singing on Grandfather — Where Voices Rise Above the Clouds" />
+          <div class="rsvp-text">
+            <div class="eyebrow">Free Admission</div>
+            <h2 style="margin-top:14px">Save your spot in the meadow.</h2>
+            <p style="color:var(--fg-on-dark-muted);font-size:17px;margin:0 0 30px">Tickets are free — reserving just helps us plan the day. Bring the whole family.</p>
+            <a class="btn btn--accent btn--lg" href="https://www.eventbrite.com/e/singing-on-grandfather-2026-tickets-1983169223533" target="_blank" rel="noopener noreferrer">Reserve Your Free Ticket</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -191,15 +188,23 @@ const trucks = [
 </PageLayout>
 
 <style>
+  .rsvp-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .rsvp-text { }
   .evergreen-poster {
-    width: 340px;
+    width: 100%;
     height: auto;
     display: block;
     border-radius: var(--radius-lg);
-    box-shadow: 0 24px 72px rgba(15,25,18,0.22);
+    box-shadow: 0 24px 72px rgba(15,25,18,0.35);
   }
-  @media (max-width: 480px) {
-    .evergreen-poster { width: 260px; }
+  @media (max-width: 700px) {
+    .rsvp-grid { grid-template-columns: 1fr; }
+    .evergreen-poster { max-width: 260px; margin: 0 auto; }
   }
 
   .prayer-tent-grid {
