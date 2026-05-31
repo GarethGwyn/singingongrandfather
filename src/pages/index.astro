@@ -104,6 +104,9 @@ const trucks = [
       </div>
     </section>
 
+    <!-- Illustration band -->
+    <div class="art-band" aria-hidden="true"></div>
+
     <!-- Food on the grounds -->
     <section class="food-band">
       <div class="container" style="text-align:center">
@@ -220,6 +223,15 @@ const trucks = [
 </PageLayout>
 
 <style>
+  .art-band {
+    width: 100%;
+    background-image: url(/assets/brand/poster-illustration.jpg);
+    background-size: cover;
+    background-position: center 30%;
+    aspect-ratio: 1584 / 672;
+    max-height: 520px;
+  }
+
   .dot { width:5px;height:5px;border-radius:50%;background:var(--brass-300);display:inline-block }
 
   .hero__directions-link {
