@@ -104,11 +104,12 @@ import PageLayout from '../layouts/PageLayout.astro';
     </section>
 
     <!-- Mission -->
-    <section class="section section--sky section--center">
-      <div class="container">
+    <section class="section section--mission section--center">
+      <div class="mission__scrim"></div>
+      <div class="container" style="position:relative;z-index:1">
         <div class="quoteband">
-          <div class="quoteband__q">To share the hope of Jesus Christ through music, community, and encouragement.</div>
-          <div class="quoteband__cite">Our Mission</div>
+          <div class="quoteband__q" style="color:#fff">To share the hope of Jesus Christ through music, community, and encouragement.</div>
+          <div class="quoteband__cite" style="color:rgba(255,255,255,0.65)">Our Mission</div>
         </div>
       </div>
     </section>
@@ -282,6 +283,24 @@ import PageLayout from '../layouts/PageLayout.astro';
     width: 100%;
     height: 100%;
     border: 0;
+  }
+
+  .section--mission {
+    position: relative;
+    background-image: url(/assets/photography/mountain-musicians.jpg);
+    background-size: cover;
+    background-position: center 40%;
+    padding: 120px 0;
+  }
+  .mission__scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(10,28,18,0.55) 0%,
+      rgba(10,28,18,0.45) 50%,
+      rgba(10,28,18,0.65) 100%
+    );
   }
 
   .timeline-banner {
