@@ -105,7 +105,9 @@ const trucks = [
     </section>
 
     <!-- Illustration band -->
-    <div class="art-band" aria-hidden="true"></div>
+    <div class="art-band">
+      <div class="art-band__text">Where Voices Rise<br />Above the Clouds</div>
+    </div>
 
     <!-- Food on the grounds -->
     <section class="food-band">
@@ -230,6 +232,22 @@ const trucks = [
     background-position: center 30%;
     aspect-ratio: 1584 / 672;
     max-height: 520px;
+    position: relative;
+  }
+  .art-band__text {
+    position: absolute;
+    top: 12%;
+    right: 6%;
+    font-family: var(--font-display);
+    font-size: clamp(15px, 2.4vw, 34px);
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--coral-500);
+    line-height: 1.25;
+    text-align: right;
+    text-shadow: 0 1px 6px rgba(255,255,255,0.5);
+    max-width: 44%;
   }
 
   .dot { width:5px;height:5px;border-radius:50%;background:var(--brass-300);display:inline-block }
