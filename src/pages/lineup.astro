@@ -127,6 +127,13 @@ const trucks = [
       </div>
     </section>
 
+    <!-- Evergreen poster -->
+    <section class="section section--cream section--center" style="padding-top:56px;padding-bottom:56px">
+      <div class="container" style="display:flex;justify-content:center">
+        <img class="evergreen-poster" src="/assets/brand/poster-evergreen.jpg" alt="Singing on Grandfather — Where Voices Rise Above the Clouds" />
+      </div>
+    </section>
+
     <!-- RSVP -->
     <section class="section section--pine section--center">
       <div class="container" style="text-align:center">
@@ -184,6 +191,17 @@ const trucks = [
 </PageLayout>
 
 <style>
+  .evergreen-poster {
+    width: 340px;
+    height: auto;
+    display: block;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 24px 72px rgba(15,25,18,0.22);
+  }
+  @media (max-width: 480px) {
+    .evergreen-poster { width: 260px; }
+  }
+
   .prayer-tent-grid {
     display: grid;
     grid-template-columns: 340px 1fr;
