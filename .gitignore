@@ -28,3 +28,6 @@ pnpm-debug.log*
 Singing on Grandfather/
 Singing on Grandfather.zip
 .env*
+
+# local backups (not deployed to Vercel)
+public/assets/video/original-backup/
