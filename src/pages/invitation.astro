@@ -1,0 +1,425 @@
+---
+import '../styles/tokens.css';
+import '../styles/site.css';
+
+const CONTACT_EMAIL = 'owengwyn@me.com';
+const EMAIL_SUBJECT = 'Singing on Grandfather — Endowment Inquiry';
+const EMAIL_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_SUBJECT)}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="A private invitation to help endow Singing on Grandfather for the next century." />
+    <title>A Private Invitation — Singing on Grandfather</title>
+    <link rel="icon" type="image/png" href="/assets/brand/logo-fullcolor.png" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      body { margin: 0; background: var(--cream-100); }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- Hero -->
+      <header class="inv-hero">
+        <video class="inv-hero__video" autoplay muted loop playsinline poster="/assets/photography/2026/sog-2026-06.jpg">
+          <source src="/assets/video/festival-hero.mp4" type="video/mp4" />
+        </video>
+        <div class="inv-hero__scrim"></div>
+        <div class="container inv-hero__content">
+          <a class="inv-mark" href="/" aria-label="Singing on Grandfather">
+            <img src="/assets/brand/logo-reversed.png" alt="Singing on Grandfather" />
+          </a>
+          <div class="inv-hero__inner">
+            <div class="eyebrow" style="color:var(--brass-300);margin-bottom:28px">A Private Invitation</div>
+            <h1 class="inv-hero__title">A song<br />that never ends.</h1>
+            <p class="inv-hero__sub">Help carry Singing on Grandfather forward — forever.</p>
+            <a class="btn btn--accent btn--lg" href="#the-vision" style="margin-top:36px">Read the invitation ↓</a>
+          </div>
+        </div>
+      </header>
+
+      <!-- The vision -->
+      <section class="section section--cream" id="the-vision">
+        <div class="container inv-container">
+          <div class="eyebrow">The Grandfather Endowment</div>
+          <hr class="tickrule" />
+          <h2 class="inv-h2">A gift that<br />sings forever.</h2>
+          <p class="inv-lead">For over a century, this gathering has been carried forward by families who believed in it — the Hartleys, the MacRaes, the Mortons, and the generations after them. Today, we are building the structure that will carry it another hundred years.</p>
+          <p class="inv-body">We're raising <strong>$1 million</strong> to endow Singing on Grandfather. Once funded, the endowment will quietly underwrite the festival each June — in perpetuity. No more wondering if next year will happen. No more asking the same families to carry the full weight. Just the gathering, every fourth Sunday in June, for every generation to come.</p>
+        </div>
+      </section>
+
+      <!-- The math -->
+      <section class="section section--pine">
+        <div class="container inv-container">
+          <div class="eyebrow" style="color:var(--brass-300)">A Sustainable Future</div>
+          <h2 class="inv-h2" style="color:var(--cream-50)">One gift.<br />Every June.<br />Forever.</h2>
+          <div class="inv-math">
+            <div class="inv-math__row">
+              <div class="inv-math__label">An annual gift</div>
+              <div class="inv-math__dash">—</div>
+              <div class="inv-math__value">funds <em>one</em> June.</div>
+            </div>
+            <div class="inv-math__row inv-math__row--hero">
+              <div class="inv-math__label">An endowment gift</div>
+              <div class="inv-math__dash">—</div>
+              <div class="inv-math__value">funds that measure of music <em>every</em> June, <em>every</em> year, forever.</div>
+            </div>
+          </div>
+          <p class="inv-body" style="color:var(--cream-200);margin-top:36px">The endowment is invested with care. Each year, a sustainable portion of its earnings flows into the festival — the stage, the sound, the food trucks on the meadow, the free admission at the gate. The principal stays intact. The music keeps rising.</p>
+        </div>
+      </section>
+
+      <!-- Legacy -->
+      <section class="section section--cream">
+        <div class="container inv-container">
+          <div class="eyebrow">A Century of Voices</div>
+          <hr class="tickrule" />
+          <h2 class="inv-h2">The names<br />you'd join.</h2>
+          <p class="inv-lead">Since 1924, voices have risen from this meadow that shaped a nation's gospel tradition.</p>
+          <div class="inv-names">
+            <div class="inv-name"><span class="inv-name__year">1962</span>Dr. Billy Graham</div>
+            <div class="inv-name"><span class="inv-name__year">1970s</span>Boots Randolph</div>
+            <div class="inv-name"><span class="inv-name__year">1974</span>Johnny Cash</div>
+            <div class="inv-name"><span class="inv-name__year">1974</span>Bob Hope</div>
+            <div class="inv-name"><span class="inv-name__year">1980s</span>Roy Acuff · Oral Roberts · Roy Clark</div>
+            <div class="inv-name"><span class="inv-name__year">2017</span>Ann Graham Lotz</div>
+            <div class="inv-name"><span class="inv-name__year">2024</span>Dr. Gary Chapman <em>· the centennial</em></div>
+            <div class="inv-name"><span class="inv-name__year">2026</span>Darin &amp; Brooke Aldridge · Doug Elks</div>
+          </div>
+          <p class="inv-body" style="margin-top:32px">And beneath the names on the stage, the families who built it: the Hartleys, who began it in 1924; the MacRaes and the Mortons, who stewarded it through a century; and the volunteers, pastors, and musicians of the Blue Ridge who have carried it in between. A gift to the endowment places you in that line.</p>
+        </div>
+      </section>
+
+      <!-- What this protects -->
+      <section class="section section--sunk">
+        <div class="container inv-container">
+          <div class="eyebrow">What Your Gift Protects</div>
+          <h2 class="inv-h2">Free. Every family.<br />Forever.</h2>
+          <div class="inv-protects">
+            <div class="inv-protect">
+              <div class="inv-protect__num">01</div>
+              <div class="inv-protect__text"><strong>Free admission</strong> — the Hartley family's original pledge, kept for a century. Your gift keeps the gate open.</div>
+            </div>
+            <div class="inv-protect">
+              <div class="inv-protect__num">02</div>
+              <div class="inv-protect__text"><strong>Christ-centered gospel music</strong> — the thread woven through every tradition on the meadow. Non-denominational, multi-church, shared.</div>
+            </div>
+            <div class="inv-protect">
+              <div class="inv-protect__num">03</div>
+              <div class="inv-protect__text"><strong>The gathering itself</strong> — the stage, the sound, the trucks, the prayer tent, the choruses that bring the mountain to tears every fourth Sunday in June.</div>
+            </div>
+            <div class="inv-protect">
+              <div class="inv-protect__num">04</div>
+              <div class="inv-protect__text"><strong>Freedom from the annual ask</strong> — so stewards can focus on the music, the message, and the ministry, not next year's budget.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quote -->
+      <section class="section section--pine">
+        <div class="container inv-container" style="text-align:center">
+          <div class="inv-quote">"He forgives all our sins, heals all our diseases, redeems our lives from destruction, and crowns us with loving kindness."</div>
+          <div class="inv-quote__cite">Psalm 103</div>
+        </div>
+      </section>
+
+      <!-- How to give -->
+      <section class="section section--cream" id="give">
+        <div class="container inv-container" style="text-align:center">
+          <div class="eyebrow">Start a Conversation</div>
+          <hr class="tickrule" style="margin-left:auto;margin-right:auto" />
+          <h2 class="inv-h2">We'd love<br />to talk.</h2>
+          <p class="inv-lead" style="margin-left:auto;margin-right:auto">An endowment gift is a significant decision, and it deserves a conversation — about the goals, the timing, naming opportunities, planned giving, or whatever would be most meaningful to you and your family.</p>
+          <p class="inv-body" style="margin-left:auto;margin-right:auto;max-width:560px">Owen Gwyn, representing the Singing on Grandfather Foundation, would be grateful to speak with you directly. There is no form here, and no obligation — just an open door.</p>
+          <div style="margin-top:40px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+            <a class="btn btn--accent btn--lg" href={EMAIL_HREF}>Email Owen</a>
+            <a class="btn btn--secondary btn--lg" href="/about">About the Foundation →</a>
+          </div>
+          <p class="inv-fineprint">Singing on Grandfather Foundation is a 501(c)(3) tax-exempt public charity. All gifts are tax-deductible to the full extent allowed by law.<br />DLN 26053404003924</p>
+        </div>
+      </section>
+
+      <!-- Footer line -->
+      <footer class="inv-footer">
+        <div class="container" style="text-align:center">
+          <div class="inv-footer__tag">Where Voices Rise Above the Clouds</div>
+          <div class="inv-footer__meta">MacRae Meadows · Grandfather Mountain · Linville, NC</div>
+        </div>
+      </footer>
+    </main>
+
+    <style>
+      /* ===== Hero ===== */
+      .inv-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
+        background: var(--pine-900);
+      }
+      .inv-hero__video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 0;
+      }
+      .inv-hero__scrim {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(15,25,18,0.65) 0%,
+          rgba(15,25,18,0.45) 40%,
+          rgba(15,25,18,0.75) 100%
+        );
+        z-index: 1;
+      }
+      .inv-hero__content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 32px;
+        padding-bottom: 72px;
+        width: 100%;
+      }
+      .inv-mark {
+        display: inline-block;
+        text-decoration: none;
+      }
+      .inv-mark img { height: 56px; display: block; }
+      @media (max-width: 640px) {
+        .inv-mark img { height: 44px; }
+      }
+      .inv-hero__inner {
+        max-width: 760px;
+        margin-top: auto;
+      }
+      .inv-hero__title {
+        font-family: var(--font-display);
+        font-size: clamp(44px, 7vw, 92px);
+        font-weight: 800;
+        line-height: 1.02;
+        letter-spacing: -0.02em;
+        color: var(--cream-50);
+        margin: 0 0 24px;
+        text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+      }
+      .inv-hero__sub {
+        font-family: var(--font-accent);
+        font-style: italic;
+        font-size: clamp(20px, 2.6vw, 30px);
+        color: var(--cream-200);
+        line-height: 1.4;
+        margin: 0;
+        max-width: 540px;
+      }
+
+      /* ===== Shared ===== */
+      .inv-container { max-width: 820px; }
+      .inv-h2 {
+        font-family: var(--font-display);
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.015em;
+        margin: 18px 0 24px;
+      }
+      .inv-lead {
+        font-family: var(--font-accent);
+        font-style: italic;
+        font-size: clamp(19px, 2vw, 24px);
+        line-height: 1.5;
+        color: var(--ink-700);
+        margin: 0 0 24px;
+        max-width: 680px;
+      }
+      .inv-body {
+        font-size: 17px;
+        line-height: 1.75;
+        color: var(--ink-700);
+        margin: 0 0 18px;
+        max-width: 680px;
+      }
+      .section--pine .inv-lead { color: var(--cream-200); }
+      .section--pine .inv-body { color: var(--cream-200); }
+
+      /* ===== Math section ===== */
+      .inv-math {
+        margin-top: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .inv-math__row {
+        display: grid;
+        grid-template-columns: 200px auto 1fr;
+        gap: 20px;
+        align-items: baseline;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255,255,255,0.15);
+      }
+      .inv-math__row:last-child { border-bottom: 1px solid rgba(255,255,255,0.15); }
+      .inv-math__label {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--brass-300);
+      }
+      .inv-math__dash { color: var(--cream-300); opacity: 0.5; }
+      .inv-math__value {
+        font-family: var(--font-accent);
+        font-size: clamp(20px, 2.4vw, 28px);
+        line-height: 1.4;
+        color: var(--cream-100);
+      }
+      .inv-math__value em {
+        font-style: normal;
+        color: var(--coral-300);
+        font-weight: 600;
+      }
+      .inv-math__row--hero .inv-math__value {
+        font-size: clamp(22px, 2.8vw, 32px);
+        color: var(--cream-50);
+      }
+      @media (max-width: 640px) {
+        .inv-math__row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+        .inv-math__dash { display: none; }
+      }
+
+      /* ===== Names ===== */
+      .inv-names {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 32px;
+      }
+      @media (max-width: 640px) {
+        .inv-names { grid-template-columns: 1fr; }
+      }
+      .inv-name {
+        font-size: 17px;
+        line-height: 1.5;
+        color: var(--pine-900);
+        font-weight: 600;
+        padding: 10px 0;
+        border-top: 1px solid var(--cream-300);
+      }
+      .inv-name__year {
+        display: inline-block;
+        width: 60px;
+        font-family: var(--font-mono, monospace);
+        font-size: 13px;
+        color: var(--coral-600);
+        font-weight: 600;
+      }
+      .inv-name em {
+        font-family: var(--font-accent);
+        color: var(--ink-500);
+        font-weight: 400;
+      }
+
+      /* ===== What this protects ===== */
+      .inv-protects {
+        margin-top: 32px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 28px 40px;
+      }
+      @media (max-width: 720px) {
+        .inv-protects { grid-template-columns: 1fr; }
+      }
+      .inv-protect {
+        display: grid;
+        grid-template-columns: 54px 1fr;
+        gap: 18px;
+        align-items: start;
+      }
+      .inv-protect__num {
+        font-family: var(--font-display);
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--coral-600);
+        line-height: 1;
+        padding-top: 2px;
+      }
+      .inv-protect__text {
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--ink-700);
+      }
+      .inv-protect__text strong {
+        color: var(--pine-900);
+        font-weight: 700;
+      }
+
+      /* ===== Quote ===== */
+      .inv-quote {
+        font-family: var(--font-accent);
+        font-style: italic;
+        font-size: clamp(22px, 3vw, 34px);
+        line-height: 1.45;
+        color: var(--cream-50);
+        max-width: 720px;
+        margin: 0 auto;
+      }
+      .inv-quote__cite {
+        margin-top: 20px;
+        font-family: var(--font-display);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brass-300);
+      }
+
+      /* ===== Fine print ===== */
+      .inv-fineprint {
+        margin-top: 40px;
+        font-size: 12px;
+        line-height: 1.7;
+        color: var(--ink-500);
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* ===== Footer ===== */
+      .inv-footer {
+        background: var(--pine-900);
+        padding: 40px 0 48px;
+      }
+      .inv-footer__tag {
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--brass-300);
+      }
+      .inv-footer__meta {
+        margin-top: 12px;
+        font-size: 12px;
+        color: rgba(255,255,255,0.4);
+        letter-spacing: 0.04em;
+      }
+    </style>
+  </body>
+</html>
