@@ -27,9 +27,7 @@ const EMAIL_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_S
     <main>
       <!-- Hero -->
       <header class="inv-hero">
-        <video class="inv-hero__video" autoplay muted loop playsinline poster="/assets/photography/2026/sog-2026-06.jpg">
-          <source src="/assets/video/festival-hero.mp4" type="video/mp4" />
-        </video>
+        <div class="inv-hero__bg"></div>
         <div class="inv-hero__scrim"></div>
         <div class="container inv-hero__content">
           <a class="inv-mark" href="/" aria-label="Singing on Grandfather">
@@ -39,10 +37,28 @@ const EMAIL_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_S
             <div class="eyebrow" style="color:var(--brass-300);margin-bottom:28px">A Private Invitation</div>
             <h1 class="inv-hero__title">A song<br />that never ends.</h1>
             <p class="inv-hero__sub">Help carry Singing on Grandfather forward — forever.</p>
-            <a class="btn btn--accent btn--lg" href="#the-vision" style="margin-top:36px">Read the invitation ↓</a>
+            <div style="margin-top:36px;display:flex;gap:14px;flex-wrap:wrap">
+              <a class="btn btn--accent btn--lg" href="#story">Watch our story ▶</a>
+              <a class="btn btn--outline-light btn--lg" href="#the-vision">Read the invitation ↓</a>
+            </div>
           </div>
         </div>
       </header>
+
+      <!-- The story -->
+      <section class="section section--pine" id="story">
+        <div class="container inv-container" style="max-width:960px">
+          <div class="eyebrow" style="color:var(--brass-300);text-align:center">Watch Our Story</div>
+          <h2 class="inv-h2" style="color:var(--cream-50);text-align:center">Two minutes<br />on the mountain.</h2>
+          <div class="inv-story-video">
+            <video controls preload="metadata" playsinline poster="/assets/photography/2026/sog-2026-06.jpg">
+              <source src="/assets/video/invitation-story.mp4" type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
+          </div>
+          <p class="inv-body" style="color:var(--cream-200);text-align:center;margin:28px auto 0;max-width:600px">A short film from the 2026 gathering — the voices, the meadow, and the century of song behind them.</p>
+        </div>
+      </section>
 
       <!-- The vision -->
       <section class="section section--cream" id="the-vision">
@@ -166,13 +182,28 @@ const EMAIL_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(EMAIL_S
         overflow: hidden;
         background: var(--pine-900);
       }
-      .inv-hero__video {
+      .inv-hero__bg {
         position: absolute;
         inset: 0;
+        background-image: url(/assets/photography/2026/sog-2026-06.jpg);
+        background-size: cover;
+        background-position: center 35%;
+        z-index: 0;
+      }
+      /* ===== Story video ===== */
+      .inv-story-video {
+        margin-top: 36px;
+        position: relative;
+        aspect-ratio: 16 / 9;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        box-shadow: 0 24px 72px rgba(0,0,0,0.5);
+        background: #000;
+      }
+      .inv-story-video video {
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        z-index: 0;
+        display: block;
       }
       .inv-hero__scrim {
         position: absolute;
