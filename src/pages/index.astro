@@ -59,22 +59,19 @@ import EmailSignup from '../components/EmailSignup.astro';
       </div>
     </section>
 
-    <!-- 2026 Overview Reel -->
+    <!-- Short film -->
     <section class="section section--sunk" id="reel-2026">
       <div class="container">
         <div class="section__head" style="text-align:center;margin-left:auto;margin-right:auto">
-          <div class="eyebrow">The 2026 Gathering</div>
-          <h2 style="margin-top:12px">Watch the highlight reel</h2>
+          <div class="eyebrow">A Short Film</div>
+          <h2 style="margin-top:12px">Two minutes on the mountain.</h2>
         </div>
         <div class="reel-wrap">
           <div class="video-resp">
-            <iframe
-              src="https://www.youtube-nocookie.com/embed/l6CBImnIf8M"
-              title="Singing on Grandfather 2026 Overview"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-              loading="lazy"
-            ></iframe>
+            <video controls preload="metadata" playsinline poster="/assets/photography/2026/sog-2026-06.jpg">
+              <source src="/assets/video/invitation-story.mp4" type="video/mp4" />
+              Your browser does not support embedded video.
+            </video>
           </div>
           <div style="margin-top:32px">
             <a class="btn btn--secondary" href="/archive">Explore the 2026 Archive →</a>
@@ -195,12 +192,14 @@ import EmailSignup from '../components/EmailSignup.astro';
     background: var(--pine-900);
     box-shadow: var(--shadow-lg);
   }
-  .reel-wrap .video-resp iframe {
+  .reel-wrap .video-resp iframe,
+  .reel-wrap .video-resp video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     border: 0;
+    object-fit: cover;
   }
   .reel-caption {
     color: var(--ink-500);
